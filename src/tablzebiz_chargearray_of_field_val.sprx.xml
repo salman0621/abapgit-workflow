@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SPRX" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <PROXY_HEADER>
+    <item>
+     <OBJECT>TABL</OBJECT>
+     <OBJ_NAME>ZEBIZ_CHARGEARRAY_OF_FIELD_VAL</OBJ_NAME>
+     <OBJECT_M>TABL</OBJECT_M>
+     <OBJ_NAME_M>ZEBIZ_CHARGEARRAY_OF_FIELD_VAL</OBJ_NAME_M>
+     <HASH_ID>A50450C720128B84AC9E3297A37B43CDB4E8C2EA</HASH_ID>
+     <ID>&lt;type&gt; ArrayOfFieldValue http://eBizCharge.ServiceModel.SOAP http://eBizCharge.ServiceModel.SOAP</ID>
+     <IFR_GLOBAL>X</IFR_GLOBAL>
+     <IFR_TYPE>type</IFR_TYPE>
+     <IFR_NAME>ArrayOfFieldValue</IFR_NAME>
+     <IFR_NSPCE>http://eBizCharge.ServiceModel.SOAP</IFR_NSPCE>
+     <IFR_GNSPCE>http://eBizCharge.ServiceModel.SOAP</IFR_GNSPCE>
+     <GEN_VERS>0005</GEN_VERS>
+     <PREFIX>ZEBIZ_CHARGE</PREFIX>
+     <CATEGORY>ifmtypedef</CATEGORY>
+     <GEN_APPL>WEBSERVICES</GEN_APPL>
+     <X-ML_NSPCE>http://eBizCharge.ServiceModel.SOAP</X-ML_NSPCE>
+     <X-ML_NAME>ArrayOfFieldValue</X-ML_NAME>
+    </item>
+   </PROXY_HEADER>
+   <PROXY_DATA>
+    <item>
+     <OBJECT>TABL</OBJECT>
+     <OBJ_NAME>ZEBIZ_CHARGEARRAY_OF_FIELD_VAL</OBJ_NAME>
+     <OBJECT1>FIEL</OBJECT1>
+     <OBJ_NAME1>FIELD_VALUE</OBJ_NAME1>
+     <OBJECT2>FIEL</OBJECT2>
+     <OBJ_NAME2>FIELD_VALUE</OBJ_NAME2>
+     <OBJECT_R>TTYP</OBJECT_R>
+     <OBJ_NAME_R>ZEBIZ_CHARGEFIELD_VALUE_TAB</OBJ_NAME_R>
+     <ID>&lt;element&gt; {http://eBizCharge.ServiceModel.SOAP}FieldValue &lt;type&gt; ArrayOfFieldValue http://eBizCharge.ServiceModel.SOAP http://eBizCharge.ServiceModel.SOAP</ID>
+     <IFR_TYPE>element</IFR_TYPE>
+     <IFR_NAME>FieldValue</IFR_NAME>
+     <IFR_TAGTYP>L</IFR_TAGTYP>
+     <IFR_MAXOCC>65535</IFR_MAXOCC>
+     <IFR_OPTNL>X</IFR_OPTNL>
+     <IFR_QUALIF>X</IFR_QUALIF>
+     <IFR_NILLABLE>X</IFR_NILLABLE>
+     <IFR_SCALE>-2</IFR_SCALE>
+     <R3_TYPE>FIEL</R3_TYPE>
+     <R3_NAME>FIELD_VALUE</R3_NAME>
+     <R3_SEQNUM>000001</R3_SEQNUM>
+    </item>
+    <item>
+     <OBJECT>TABL</OBJECT>
+     <OBJ_NAME>ZEBIZ_CHARGEARRAY_OF_FIELD_VAL</OBJ_NAME>
+     <OBJECT1>TABL</OBJECT1>
+     <OBJ_NAME1>ZEBIZ_CHARGEARRAY_OF_FIELD_VAL</OBJ_NAME1>
+     <OBJECT2>TABL</OBJECT2>
+     <OBJ_NAME2>ZEBIZ_CHARGEARRAY_OF_FIELD_VAL</OBJ_NAME2>
+     <ID>&lt;type&gt; ArrayOfFieldValue http://eBizCharge.ServiceModel.SOAP http://eBizCharge.ServiceModel.SOAP</ID>
+     <IFR_TYPE>type</IFR_TYPE>
+     <IFR_NAME>ArrayOfFieldValue</IFR_NAME>
+     <IFR_SCALE>-2</IFR_SCALE>
+     <R3_TYPE>TABL</R3_TYPE>
+     <R3_NAME>ZEBIZ_CHARGEARRAY_OF_FIELD_VAL</R3_NAME>
+     <R3_TEXT>Proxy Structure (generated)</R3_TEXT>
+     <CATEGORY>ifmtypedef</CATEGORY>
+    </item>
+   </PROXY_DATA>
+  </asx:values>
+ </asx:abap>
+</abapGit>

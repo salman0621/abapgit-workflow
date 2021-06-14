@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SPRX" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <PROXY_HEADER>
+    <item>
+     <OBJECT>TABL</OBJECT>
+     <OBJ_NAME>ZEBIZ_CHARGEIE_BIZ_SERVICE_MA5</OBJ_NAME>
+     <OBJECT_M>TABL</OBJECT_M>
+     <OBJ_NAME_M>ZEBIZ_CHARGEIE_BIZ_SERVICE_MA5</OBJ_NAME_M>
+     <HASH_ID>71CB095FC34222C71841D4110611123F2E0CE8D6</HASH_ID>
+     <ID>&lt;message&gt; IeBizService_MarkPaymentAsApplied_InputMessage http://eBizCharge.ServiceModel.SOAP http://eBizCharge.ServiceModel.SOAP</ID>
+     <IFR_GLOBAL>X</IFR_GLOBAL>
+     <IFR_TYPE>message</IFR_TYPE>
+     <IFR_NAME>IeBizService_MarkPaymentAsApplied_InputMessage</IFR_NAME>
+     <IFR_NSPCE>http://eBizCharge.ServiceModel.SOAP</IFR_NSPCE>
+     <IFR_GNSPCE>http://eBizCharge.ServiceModel.SOAP</IFR_GNSPCE>
+     <GEN_VERS>0006</GEN_VERS>
+     <PREFIX>ZEBIZ_CHARGE</PREFIX>
+     <CATEGORY>ifmmessage</CATEGORY>
+     <GEN_APPL>WEBSERVICES</GEN_APPL>
+     <X-ML_NSPCE>http://eBizCharge.ServiceModel.SOAP</X-ML_NSPCE>
+     <X-ML_NAME>MarkPaymentAsApplied</X-ML_NAME>
+    </item>
+   </PROXY_HEADER>
+   <PROXY_DATA>
+    <item>
+     <OBJECT>TABL</OBJECT>
+     <OBJ_NAME>ZEBIZ_CHARGEIE_BIZ_SERVICE_MA5</OBJ_NAME>
+     <OBJECT1>FIEL</OBJECT1>
+     <OBJ_NAME1>INVOICE_NUMBER</OBJ_NAME1>
+     <OBJECT2>FIEL</OBJECT2>
+     <OBJ_NAME2>INVOICE_NUMBER</OBJ_NAME2>
+     <ID>&lt;element&gt; {http://eBizCharge.ServiceModel.SOAP}invoiceNumber &lt;message&gt; IeBizService_MarkPaymentAsApplied_InputMessage http://eBizCharge.ServiceModel.SOAP http://eBizCharge.ServiceModel.SOAP</ID>
+     <IFR_TYPE>element</IFR_TYPE>
+     <IFR_NAME>invoiceNumber</IFR_NAME>
+     <IFR_TAGTYP>E</IFR_TAGTYP>
+     <IFR_MAXOCC>1</IFR_MAXOCC>
+     <IFR_OPTNL>X</IFR_OPTNL>
+     <IFR_QUALIF>X</IFR_QUALIF>
+     <IFR_XSDTYP>string</IFR_XSDTYP>
+     <IFR_SCALE>-2</IFR_SCALE>
+     <R3_TYPE>FIEL</R3_TYPE>
+     <R3_NAME>INVOICE_NUMBER</R3_NAME>
+     <R3_DATATYP>STRG</R3_DATATYP>
+     <R3_SEQNUM>000002</R3_SEQNUM>
+    </item>
+    <item>
+     <OBJECT>TABL</OBJECT>
+     <OBJ_NAME>ZEBIZ_CHARGEIE_BIZ_SERVICE_MA5</OBJ_NAME>
+     <OBJECT1>FIEL</OBJECT1>
+     <OBJ_NAME1>PAYMENT_INTERNAL_ID</OBJ_NAME1>
+     <OBJECT2>FIEL</OBJECT2>
+     <OBJ_NAME2>PAYMENT_INTERNAL_ID</OBJ_NAME2>
+     <ID>&lt;element&gt; {http://eBizCharge.ServiceModel.SOAP}paymentInternalId &lt;message&gt; IeBizService_MarkPaymentAsApplied_InputMessage http://eBizCharge.ServiceModel.SOAP http://eBizCharge.ServiceModel.SOAP</ID>
+     <IFR_TYPE>element</IFR_TYPE>
+     <IFR_NAME>paymentInternalId</IFR_NAME>
+     <IFR_TAGTYP>E</IFR_TAGTYP>
+     <IFR_MAXOCC>1</IFR_MAXOCC>
+     <IFR_OPTNL>X</IFR_OPTNL>
+     <IFR_QUALIF>X</IFR_QUALIF>
+     <IFR_XSDTYP>string</IFR_XSDTYP>
+     <IFR_SCALE>-2</IFR_SCALE>
+     <R3_TYPE>FIEL</R3_TYPE>
+     <R3_NAME>PAYMENT_INTERNAL_ID</R3_NAME>
+     <R3_DATATYP>STRG</R3_DATATYP>
+     <R3_SEQNUM>000003</R3_SEQNUM>
+    </item>
+    <item>
+     <OBJECT>TABL</OBJECT>
+     <OBJ_NAME>ZEBIZ_CHARGEIE_BIZ_SERVICE_MA5</OBJ_NAME>
+     <OBJECT1>FIEL</OBJECT1>
+     <OBJ_NAME1>SECURITY_TOKEN</OBJ_NAME1>
+     <OBJECT2>FIEL</OBJECT2>
+     <OBJ_NAME2>SECURITY_TOKEN</OBJ_NAME2>
+     <OBJECT_R>TABL</OBJECT_R>
+     <OBJ_NAME_R>ZEBIZ_CHARGESECURITY_TOKEN</OBJ_NAME_R>
+     <ID>&lt;element&gt; {http://eBizCharge.ServiceModel.SOAP}securityToken &lt;message&gt; IeBizService_MarkPaymentAsApplied_InputMessage http://eBizCharge.ServiceModel.SOAP http://eBizCharge.ServiceModel.SOAP</ID>
+     <IFR_TYPE>element</IFR_TYPE>
+     <IFR_NAME>securityToken</IFR_NAME>
+     <IFR_TAGTYP>E</IFR_TAGTYP>
+     <IFR_MAXOCC>1</IFR_MAXOCC>
+     <IFR_OPTNL>X</IFR_OPTNL>
+     <IFR_QUALIF>X</IFR_QUALIF>
+     <IFR_SCALE>-2</IFR_SCALE>
+     <R3_TYPE>FIEL</R3_TYPE>
+     <R3_NAME>SECURITY_TOKEN</R3_NAME>
+     <R3_SEQNUM>000001</R3_SEQNUM>
+    </item>
+    <item>
+     <OBJECT>TABL</OBJECT>
+     <OBJ_NAME>ZEBIZ_CHARGEIE_BIZ_SERVICE_MA5</OBJ_NAME>
+     <OBJECT1>TABL</OBJECT1>
+     <OBJ_NAME1>ZEBIZ_CHARGEIE_BIZ_SERVICE_MA5</OBJ_NAME1>
+     <OBJECT2>TABL</OBJECT2>
+     <OBJ_NAME2>ZEBIZ_CHARGEIE_BIZ_SERVICE_MA5</OBJ_NAME2>
+     <ID>&lt;message&gt; IeBizService_MarkPaymentAsApplied_InputMessage http://eBizCharge.ServiceModel.SOAP http://eBizCharge.ServiceModel.SOAP</ID>
+     <IFR_TYPE>message</IFR_TYPE>
+     <IFR_NAME>IeBizService_MarkPaymentAsApplied_InputMessage</IFR_NAME>
+     <IFR_SCALE>-2</IFR_SCALE>
+     <R3_TYPE>TABL</R3_TYPE>
+     <R3_NAME>ZEBIZ_CHARGEIE_BIZ_SERVICE_MA5</R3_NAME>
+     <R3_TEXT>Proxy Structure (generated)</R3_TEXT>
+     <CATEGORY>ifmmessage</CATEGORY>
+    </item>
+   </PROXY_DATA>
+  </asx:values>
+ </asx:abap>
+</abapGit>

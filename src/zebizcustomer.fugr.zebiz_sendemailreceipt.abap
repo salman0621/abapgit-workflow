@@ -1,0 +1,79 @@
+FUNCTION ZEBIZ_SENDEMAILRECEIPT.
+*"----------------------------------------------------------------------
+*"*"Local Interface:
+*"  IMPORTING
+*"     VALUE(TRANSACTION_REF_NUM) TYPE  STRING
+*"     REFERENCE(RECEIPT_REF_NUM) TYPE  STRING
+*"     REFERENCE(RECEIPT_NAME) TYPE  STRING
+*"     REFERENCE(EMAIL_ADDRESS) TYPE  STRING
+*"  EXPORTING
+*"     REFERENCE(EMAIL_RECEIPT_RESULT) TYPE
+*"        ZEBIZ_CHARGEEMAIL_RECEIPT_RESP
+*"----------------------------------------------------------------------
+  DATA: EXC TYPE REF TO CX_ROOT.
+  DATA: MSG TYPE STRING.
+  DATA: PROXY_TEST TYPE REF TO ZEBIZ_CHARGECO_IE_BIZ_SERVICE,
+        SECURITY   TYPE ZEBIZ_CHARGESECURITY_TOKEN.
+
+  DATA: CWA        TYPE ZEBIZ_CONFIG
+        .
+  SELECT SINGLE * FROM ZEBIZ_CONFIG INTO CWA
+    .
+
+  TRY.
+      DATA:
+        INPUT  TYPE ZEBIZ_CHARGEIE_BIZ_SERVICE_EM1,
+        OUTPUT TYPE ZEBIZ_CHARGEIE_BIZ_SERVICE_EMA
+        .
+*     instantiate the object reference
+      IF PROXY_TEST IS NOT BOUND.
+        CREATE OBJECT PROXY_TEST
+          EXPORTING
+            LOGICAL_PORT_NAME = 'EBIZ'.
+      ENDIF.
+      SECURITY-SECURITY_ID = CWA-SECURITYKEY.
+
+*
+
+*     there is one input value for this service call for user id
+
+      INPUT-SECURITY_TOKEN = SECURITY.
+      INPUT-TRANSACTION_REF_NUM = TRANSACTION_REF_NUM.
+      INPUT-RECEIPT_REF_NUM = RECEIPT_REF_NUM.
+      INPUT-RECEIPT_NAME = RECEIPT_NAME.
+      INPUT-EMAIL_ADDRESS = EMAIL_ADDRESS.
+
+*     call the method (web service call) you can use the pattern to generate the code if you wish
+      CALL METHOD PROXY_TEST->EMAIL_RECEIPT
+        EXPORTING
+          INPUT  = INPUT
+        IMPORTING
+          OUTPUT = OUTPUT.
+
+*     process the output
+
+      EMAIL_RECEIPT_RESULT = OUTPUT-EMAIL_RECEIPT_RESULT.
+    CATCH CX_AI_SYSTEM_FAULT INTO EXC.
+      MSG = EXC->GET_TEXT( ).
+      CONCATENATE 'Error in GET_CUSTOMER_PAYMENT_METHOD_P1 :' MSG INTO MSG.
+      CALL FUNCTION 'ZEBIZ_LOGFILE'
+        EXPORTING
+          LOGTEXT = MSG.
+      .
+      MESSAGE  W398(00) WITH MSG.
+*CATCH zcx_zsqrt_exception.
+    CATCH CX_AI_APPLICATION_FAULT INTO EXC.
+      MSG = EXC->GET_TEXT( ).
+      CONCATENATE 'Error in GET_CUSTOMER_PAYMENT_METHOD_P1 :' MSG INTO MSG.
+      CALL FUNCTION 'ZEBIZ_LOGFILE'
+        EXPORTING
+          LOGTEXT = MSG.
+      .
+      MESSAGE  W398(00) WITH MSG.
+*      MESSAGE msg TYPE 'E'.
+  ENDTRY.
+
+
+
+
+ENDFUNCTION.

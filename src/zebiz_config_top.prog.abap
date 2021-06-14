@@ -1,0 +1,131 @@
+*&---------------------------------------------------------------------*
+*& Include ZEBIZ_CONFIG_TOP                                   Module Pool      ZEBIZ_CONFIG
+*&
+*&---------------------------------------------------------------------*
+PROGRAM ZEBIZ_CONFIG.
+TABLES ZEBIZ_CONFIG.
+DATA: CT         TYPE TABLE OF ZEBIZ_CONFIG,
+      CWA        TYPE ZEBIZ_CONFIG,
+      CSELECT(1) TYPE C,
+      ID         TYPE N
+      .
+*&---------------------------------------------------------------------*
+*&      Module  STATUS_0001  OUTPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE STATUS_0001 OUTPUT.
+  SET PF-STATUS '0001'.
+  SET TITLEBAR '001'.
+ENDMODULE.
+*&---------------------------------------------------------------------*
+*&      Module  SAVE_COMMAND_0001  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE SAVE_COMMAND_0001 INPUT.
+  IF SY-UCOMM = 'FCT_SAVE'.
+    CLEAR ID.
+    ID = 0.
+    IF ZEBIZ_CONFIG-EBIZID <> 0.
+      CWA-EBIZID = ZEBIZ_CONFIG-EBIZID.
+      CWA-SECURITYKEY = ZEBIZ_CONFIG-SECURITYKEY.
+      CWA-DBPASSWORD = ZEBIZ_CONFIG-DBPASSWORD.
+      CWA-USERNAME = ZEBIZ_CONFIG-USERNAME.
+
+*      CWA-NEGPAYMENT = ZEBIZ_CONFIG-NEGPAYMENT.
+*      CWA-BUTTONPOS = ZEBIZ_CONFIG-BUTTONPOS.
+*      CWA-AMOUNT = ZEBIZ_CONFIG-AMOUNT.
+*      CWA-INVOICETRANS = ZEBIZ_CONFIG-INVOICETRANS.
+*      CWA-STARTUP = ZEBIZ_CONFIG-STARTUP.
+*      CWA-ACCT_NAME_FIELD = ZEBIZ_CONFIG-ACCT_NAME_FIELD.
+*      CWA-ADDR_REQUIRED = ZEBIZ_CONFIG-ADDR_REQUIRED.
+*      CWA-CONTACTID = ZEBIZ_CONFIG-CONTACTID.
+*      CWA-CAP_ADD = ZEBIZ_CONFIG-CAP_ADD.
+*      CWA-PRE_AUTH_EXTRA = ZEBIZ_CONFIG-PRE_AUTH_EXTRA.
+*      CWA-SO_TRANS = ZEBIZ_CONFIG-SO_TRANS.
+*      CWA-SO_USE = ZEBIZ_CONFIG-SO_USE.
+*      CWA-APPROVED_UDF = ZEBIZ_CONFIG-APPROVED_UDF.
+*      CWA-APPROVE_SO = ZEBIZ_CONFIG-APPROVE_SO.
+*      CWA-CC_PAY_CODES = ZEBIZ_CONFIG-CC_PAY_CODES.
+*      CWA-TERMINAL = ZEBIZ_CONFIG-TERMINAL.
+
+      MODIFY ZEBIZ_CONFIG FROM CWA.
+
+      MESSAGE 'Record Saved ' TYPE 'S'.
+    ELSE.
+      SELECT MAX( EBIZID )
+       INTO  ID
+       FROM ZEBIZ_CONFIG
+      .
+      CWA-EBIZID = ID + 1.
+      CWA-SECURITYKEY = ZEBIZ_CONFIG-SECURITYKEY.
+      CWA-DBPASSWORD = ZEBIZ_CONFIG-DBPASSWORD.
+  CWA-USERNAME = ZEBIZ_CONFIG-USERNAME.
+*      CWA-NEGPAYMENT = ZEBIZ_CONFIG-NEGPAYMENT.
+*      CWA-BUTTONPOS = ZEBIZ_CONFIG-BUTTONPOS.
+*      CWA-AMOUNT = ZEBIZ_CONFIG-AMOUNT.
+*      CWA-INVOICETRANS = ZEBIZ_CONFIG-INVOICETRANS.
+*      CWA-STARTUP = ZEBIZ_CONFIG-STARTUP.
+*      CWA-ACCT_NAME_FIELD = ZEBIZ_CONFIG-ACCT_NAME_FIELD.
+*      CWA-ADDR_REQUIRED = ZEBIZ_CONFIG-ADDR_REQUIRED.
+*      CWA-CONTACTID = ZEBIZ_CONFIG-CONTACTID.
+*      CWA-CAP_ADD = ZEBIZ_CONFIG-CAP_ADD.
+*      CWA-PRE_AUTH_EXTRA = ZEBIZ_CONFIG-PRE_AUTH_EXTRA.
+*      CWA-SO_TRANS = ZEBIZ_CONFIG-SO_TRANS.
+*      CWA-SO_USE = ZEBIZ_CONFIG-SO_USE.
+*      CWA-APPROVED_UDF = ZEBIZ_CONFIG-APPROVED_UDF.
+*      CWA-APPROVE_SO = ZEBIZ_CONFIG-APPROVE_SO.
+*      CWA-CC_PAY_CODES = ZEBIZ_CONFIG-CC_PAY_CODES.
+*      CWA-TERMINAL = ZEBIZ_CONFIG-TERMINAL.
+      INSERT INTO ZEBIZ_CONFIG VALUES CWA.
+      MESSAGE 'Data Save' TYPE 'S'.
+    ENDIF.
+  ENDIF.
+ENDMODULE.
+*&---------------------------------------------------------------------*
+*&      Module  GETDATA_0001  OUTPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE GETDATA_0001 OUTPUT.
+  SELECT SINGLE * FROM ZEBIZ_CONFIG INTO CWA
+  .
+  IF SY-SUBRC IS INITIAL.
+    IF CWA-SECURITYKEY <> ''.
+      ZEBIZ_CONFIG-EBIZID = CWA-EBIZID.
+      ZEBIZ_CONFIG-SECURITYKEY = CWA-SECURITYKEY.
+      ZEBIZ_CONFIG-DBPASSWORD = CWA-DBPASSWORD.
+      ZEBIZ_CONFIG-USERNAME = CWA-USERNAME.
+*      ZEBIZ_CONFIG-NEGPAYMENT = CWA-NEGPAYMENT.
+*      ZEBIZ_CONFIG-BUTTONPOS = CWA-BUTTONPOS.
+*      ZEBIZ_CONFIG-AMOUNT = CWA-AMOUNT.
+*      ZEBIZ_CONFIG-INVOICETRANS = CWA-INVOICETRANS.
+*      ZEBIZ_CONFIG-STARTUP = CWA-STARTUP.
+*      ZEBIZ_CONFIG-ACCT_NAME_FIELD = CWA-ACCT_NAME_FIELD.
+*      ZEBIZ_CONFIG-ADDR_REQUIRED = CWA-ADDR_REQUIRED.
+*      ZEBIZ_CONFIG-CONTACTID = CWA-CONTACTID.
+*      ZEBIZ_CONFIG-CAP_ADD = CWA-CAP_ADD.
+*      ZEBIZ_CONFIG-PRE_AUTH_EXTRA = CWA-PRE_AUTH_EXTRA.
+*      ZEBIZ_CONFIG-SO_TRANS = CWA-SO_TRANS.
+*      ZEBIZ_CONFIG-SO_USE = CWA-SO_USE.
+*      ZEBIZ_CONFIG-APPROVED_UDF = CWA-APPROVED_UDF.
+*      ZEBIZ_CONFIG-APPROVE_SO = CWA-APPROVE_SO.
+*      ZEBIZ_CONFIG-CC_PAY_CODES = CWA-CC_PAY_CODES.
+*      ZEBIZ_CONFIG-TERMINAL = CWA-TERMINAL.
+
+    ENDIF.
+
+  ENDIF.
+ENDMODULE.
+*&---------------------------------------------------------------------*
+*&      Module  CANCEL_COMMAD_0001  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE CANCEL_COMMAD_0001 INPUT.
+  IF SY-UCOMM = 'FCT_CANCEL'.
+    CLEAR SCREEN.
+    LEAVE PROGRAM.
+  ENDIF.
+ENDMODULE.

@@ -1,0 +1,109 @@
+FUNCTION ZEBIZ_DELETEPAYMENTMETHOD.
+*"----------------------------------------------------------------------
+*"*"Local Interface:
+*"  IMPORTING
+*"     VALUE(CUSTOMER_ID) TYPE  /ASU/CHAR72
+*"     REFERENCE(PAYMENT_METHOD_ID) TYPE  STRING
+*"  EXPORTING
+*"     REFERENCE(DELETE_CUSTOMER_PAYMENT_METHOD) TYPE  XSDBOOLEAN
+*"----------------------------------------------------------------------
+  DATA: EXC TYPE REF TO CX_ROOT.
+  DATA: MSG TYPE STRING.
+  DATA: PROXY_TEST TYPE REF TO ZEBIZ_CHARGECO_IE_BIZ_SERVICE,
+        SECURITY   TYPE ZEBIZ_CHARGESECURITY_TOKEN.
+
+  DATA: CWA        TYPE ZEBIZ_CONFIG
+        .
+  SELECT SINGLE * FROM ZEBIZ_CONFIG INTO CWA
+    .
+
+  TRY.
+      DATA:
+        INPUT          TYPE ZEBIZ_CHARGEIE_BIZ_SERVICE_DE3,
+        OUTPUT         TYPE ZEBIZ_CHARGEIE_BIZ_SERVICE_DE2,
+        TOKEN_INPUT    TYPE ZEBIZ_CHARGEIE_BIZ_SERVICE_G45,
+        TOKEN_OUTPUT   TYPE ZEBIZ_CHARGEIE_BIZ_SERVICE_G44,
+        CUSTOMER_TOKEN TYPE STRING.
+*     instantiate the object reference
+      IF PROXY_TEST IS NOT BOUND.
+        CREATE OBJECT PROXY_TEST
+          EXPORTING
+            LOGICAL_PORT_NAME = 'EBIZ'.
+      ENDIF.
+      SECURITY-SECURITY_ID = CWA-SECURITYKEY.
+      TOKEN_INPUT-SECURITY_TOKEN = SECURITY.
+      TOKEN_INPUT-CUSTOMER_ID = CUSTOMER_ID.
+      TRY.
+          CALL METHOD PROXY_TEST->GET_CUSTOMER_TOKEN
+            EXPORTING
+              INPUT  = TOKEN_INPUT
+            IMPORTING
+              OUTPUT = TOKEN_OUTPUT.
+        CATCH CX_AI_SYSTEM_FAULT INTO EXC.
+           msg = exc->GET_TEXT( ).
+       CONCATENATE 'Error in GET_CUSTOMER_TOKEN :' msg into msg.
+          CALL FUNCTION 'ZEBIZ_LOGFILE'
+  EXPORTING
+    LOGTEXT = msg.
+* IMPORTING
+*   STATUS  =
+  .
+          MESSAGE  W398(00) WITH MSG.
+*CATCH zcx_zsqrt_exception.
+        CATCH CX_AI_APPLICATION_FAULT INTO EXC.
+          msg = exc->GET_TEXT( ).
+       CONCATENATE 'Error in GET_CUSTOMER_TOKEN :' msg into msg.
+          CALL FUNCTION 'ZEBIZ_LOGFILE'
+  EXPORTING
+    LOGTEXT = msg.
+* IMPORTING
+*   STATUS  =
+  .
+          MESSAGE  W398(00) WITH MSG.
+      ENDTRY.
+      CUSTOMER_TOKEN = TOKEN_OUTPUT-GET_CUSTOMER_TOKEN_RESULT.
+*
+
+*     there is one input value for this service call for user id
+
+      INPUT-SECURITY_TOKEN = SECURITY.
+      INPUT-CUSTOMER_TOKEN = CUSTOMER_TOKEN.
+      INPUT-PAYMENT_METHOD_ID = PAYMENT_METHOD_ID.
+*     call the method (web service call) you can use the pattern to generate the code if you wish
+      CALL METHOD PROXY_TEST->DELETE_CUSTOMER_PAYMENT_METHOD
+        EXPORTING
+          INPUT  = INPUT
+        IMPORTING
+          OUTPUT = OUTPUT.
+
+*     process the output
+
+      DELETE_CUSTOMER_PAYMENT_METHOD = OUTPUT-DELETE_CUSTOMER_PAYMENT_METHOD.
+    CATCH CX_AI_SYSTEM_FAULT INTO EXC.
+      msg = exc->GET_TEXT( ).
+       CONCATENATE 'Error in DELETE_CUSTOMER_PAYMENT_METHOD :' msg into msg.
+          CALL FUNCTION 'ZEBIZ_LOGFILE'
+  EXPORTING
+    LOGTEXT = msg.
+* IMPORTING
+*   STATUS  =
+  .
+           MESSAGE  W398(00) WITH MSG.
+*CATCH zcx_zsqrt_exception.
+    CATCH CX_AI_APPLICATION_FAULT INTO EXC.
+     msg = exc->GET_TEXT( ).
+       CONCATENATE 'Error in DELETE_CUSTOMER_PAYMENT_METHOD :' msg into msg.
+          CALL FUNCTION 'ZEBIZ_LOGFILE'
+  EXPORTING
+    LOGTEXT = msg.
+* IMPORTING
+*   STATUS  =
+  .
+      MESSAGE  W398(00) WITH MSG.
+*      MESSAGE msg TYPE 'E'.
+  ENDTRY.
+
+
+
+
+ENDFUNCTION.
