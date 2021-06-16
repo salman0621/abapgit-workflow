@@ -293,7 +293,7 @@ MODULE SAVE_COMMAND_4010 INPUT.
           VAL = '-1'.
           RETURN.
         ELSEIF ZEBIZ_CUSTOMER-CARDCODE = ''.
-          MESSAGE 'Please enter cardcode' TYPE 'I'.
+          MESSAGE 'Please enter cardcode.' TYPE 'I'.
           VAL = '-1'.
           RETURN.
         ELSEIF ZEBIZ_CUSTOMER-ACCTHOLD = ''.
