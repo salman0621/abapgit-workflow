@@ -3719,8 +3719,8 @@
       <DESCRIPT>Email Dialog</DESCRIPT>
       <TYPE>I</TYPE>
       <NEXTSCREEN>4020</NEXTSCREEN>
-      <LINES>019</LINES>
-      <COLUMNS>115</COLUMNS>
+      <LINES>021</LINES>
+      <COLUMNS>128</COLUMNS>
      </HEADER>
      <CONTAINERS>
       <RPY_DYCATT>
@@ -3729,6 +3729,25 @@
       </RPY_DYCATT>
      </CONTAINERS>
      <FIELDS>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>PUSH</TYPE>
+       <NAME>TRANSACTION</NAME>
+       <TEXT>TRANSACTION</TEXT>
+       <ICON_NAME>ICON_MOVING_DATA_ACT</ICON_NAME>
+       <ICON_QINFO>Run_Transaction</ICON_QINFO>
+       <ICON_QSPEC>X</ICON_QSPEC>
+       <WITH_ICON>X</WITH_ICON>
+       <LINE>001</LINE>
+       <COLUMN>029</COLUMN>
+       <LENGTH>033</LENGTH>
+       <VISLENGTH>014</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <PUSH_FCODE>ENT1</PUSH_FCODE>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
        <CONT_NAME>SCREEN</CONT_NAME>
@@ -3788,6 +3807,7 @@
        <LENGTH>037</LENGTH>
        <VISLENGTH>037</VISLENGTH>
        <HEIGHT>001</HEIGHT>
+       <PUSH_FCODE>FCT_PAY</PUSH_FCODE>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
        <MODIFIC>X</MODIFIC>
@@ -3823,8 +3843,8 @@
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
-       <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
@@ -3855,8 +3875,8 @@
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
-       <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
@@ -3887,19 +3907,19 @@
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
-       <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>TEXT</TYPE>
        <NAME>TXT7</NAME>
-       <TEXT>Card/Acct._Holder</TEXT>
+       <TEXT>*Card/Acct._Holder</TEXT>
        <LINE>007</LINE>
        <COLUMN>008</COLUMN>
-       <LENGTH>017</LENGTH>
-       <VISLENGTH>017</VISLENGTH>
+       <LENGTH>018</LENGTH>
+       <VISLENGTH>018</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <REQU_ENTRY>N</REQU_ENTRY>
@@ -3919,8 +3939,105 @@
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT11</NAME>
+       <TEXT>*Routing_Number</TEXT>
+       <LINE>008</LINE>
+       <COLUMN>008</COLUMN>
+       <LENGTH>015</LENGTH>
+       <VISLENGTH>015</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
        <REQU_ENTRY>N</REQU_ENTRY>
+       <LABELLEFT>X</LABELLEFT>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>VBAK-ZZ4020_ROUTING</NAME>
+       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>008</LINE>
+       <COLUMN>029</COLUMN>
+       <LENGTH>100</LENGTH>
+       <VISLENGTH>037</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT20</NAME>
+       <TEXT>*Account_Type</TEXT>
+       <LINE>009</LINE>
+       <COLUMN>008</COLUMN>
+       <LENGTH>013</LENGTH>
+       <VISLENGTH>013</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <LABELLEFT>X</LABELLEFT>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>VBAK-ZZ4020_ACCOUNT_TYPE</NAME>
+       <TEXT>_____________________________________</TEXT>
+       <DROPDOWN>L</DROPDOWN>
+       <LINE>009</LINE>
+       <COLUMN>029</COLUMN>
+       <LENGTH>037</LENGTH>
+       <VISLENGTH>037</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <MODIFIC>X</MODIFIC>
+       <INPUT_FLD>X</INPUT_FLD>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT21</NAME>
+       <TEXT>*Checking_Account</TEXT>
+       <LINE>010</LINE>
+       <COLUMN>008</COLUMN>
+       <LENGTH>017</LENGTH>
+       <VISLENGTH>017</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <LABELLEFT>X</LABELLEFT>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>VBAK-ZZ4020_ACCOUNT</NAME>
+       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>010</LINE>
+       <COLUMN>029</COLUMN>
+       <LENGTH>100</LENGTH>
+       <VISLENGTH>037</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
@@ -3928,7 +4045,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT8</NAME>
        <TEXT>Card_Name</TEXT>
-       <LINE>008</LINE>
+       <LINE>011</LINE>
        <COLUMN>008</COLUMN>
        <LENGTH>009</LENGTH>
        <VISLENGTH>009</VISLENGTH>
@@ -3944,7 +4061,7 @@
        <NAME>VBAK-ZZ4020_CARDNAME</NAME>
        <TEXT>____________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>008</LINE>
+       <LINE>011</LINE>
        <COLUMN>029</COLUMN>
        <LENGTH>100</LENGTH>
        <VISLENGTH>037</VISLENGTH>
@@ -3960,7 +4077,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT9</NAME>
        <TEXT>Address</TEXT>
-       <LINE>010</LINE>
+       <LINE>012</LINE>
        <COLUMN>008</COLUMN>
        <LENGTH>007</LENGTH>
        <VISLENGTH>007</VISLENGTH>
@@ -3976,15 +4093,15 @@
        <NAME>VBAK-ZZ4020_ADDRESS</NAME>
        <TEXT>____________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>010</LINE>
+       <LINE>012</LINE>
        <COLUMN>029</COLUMN>
        <LENGTH>100</LENGTH>
        <VISLENGTH>037</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
-       <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
@@ -3992,7 +4109,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT10</NAME>
        <TEXT>City</TEXT>
-       <LINE>011</LINE>
+       <LINE>013</LINE>
        <COLUMN>008</COLUMN>
        <LENGTH>004</LENGTH>
        <VISLENGTH>004</VISLENGTH>
@@ -4008,15 +4125,15 @@
        <NAME>VBAK-ZZ4020_CITY</NAME>
        <TEXT>____________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>011</LINE>
+       <LINE>013</LINE>
        <COLUMN>029</COLUMN>
        <LENGTH>100</LENGTH>
        <VISLENGTH>037</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
-       <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
@@ -4024,7 +4141,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT12</NAME>
        <TEXT>State</TEXT>
-       <LINE>011</LINE>
+       <LINE>013</LINE>
        <COLUMN>069</COLUMN>
        <LENGTH>005</LENGTH>
        <VISLENGTH>005</VISLENGTH>
@@ -4040,15 +4157,15 @@
        <NAME>VBAK-ZZ4020_STATE</NAME>
        <TEXT>____________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>011</LINE>
+       <LINE>013</LINE>
        <COLUMN>077</COLUMN>
        <LENGTH>100</LENGTH>
        <VISLENGTH>012</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
-       <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
@@ -4056,7 +4173,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT13</NAME>
        <TEXT>Zip</TEXT>
-       <LINE>011</LINE>
+       <LINE>013</LINE>
        <COLUMN>092</COLUMN>
        <LENGTH>003</LENGTH>
        <VISLENGTH>003</VISLENGTH>
@@ -4072,15 +4189,15 @@
        <NAME>VBAK-ZZ4020_ZIP</NAME>
        <TEXT>____________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>011</LINE>
+       <LINE>013</LINE>
        <COLUMN>100</COLUMN>
        <LENGTH>100</LENGTH>
        <VISLENGTH>012</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
-       <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
@@ -4088,7 +4205,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT14</NAME>
        <TEXT>Email</TEXT>
-       <LINE>012</LINE>
+       <LINE>014</LINE>
        <COLUMN>008</COLUMN>
        <LENGTH>005</LENGTH>
        <VISLENGTH>005</VISLENGTH>
@@ -4104,15 +4221,15 @@
        <NAME>VBAK-ZZ4020_EMAIL</NAME>
        <TEXT>____________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>012</LINE>
+       <LINE>014</LINE>
        <COLUMN>029</COLUMN>
        <LENGTH>100</LENGTH>
        <VISLENGTH>037</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
-       <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
@@ -4120,7 +4237,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT15</NAME>
        <TEXT>Method_Name</TEXT>
-       <LINE>013</LINE>
+       <LINE>015</LINE>
        <COLUMN>008</COLUMN>
        <LENGTH>011</LENGTH>
        <VISLENGTH>011</VISLENGTH>
@@ -4136,15 +4253,15 @@
        <NAME>VBAK-ZZ4020_METHOD</NAME>
        <TEXT>____________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>013</LINE>
+       <LINE>015</LINE>
        <COLUMN>029</COLUMN>
        <LENGTH>100</LENGTH>
        <VISLENGTH>037</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
-       <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
       <RPY_DYFATC>
        <CONT_TYPE>SCREEN</CONT_TYPE>
@@ -4152,7 +4269,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT16</NAME>
        <TEXT>Amount</TEXT>
-       <LINE>014</LINE>
+       <LINE>016</LINE>
        <COLUMN>008</COLUMN>
        <LENGTH>006</LENGTH>
        <VISLENGTH>006</VISLENGTH>
@@ -4166,9 +4283,9 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>TEMPLATE</TYPE>
        <NAME>VBAK-ZZ4020_AMOUNT</NAME>
-       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <TEXT>_____________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>014</LINE>
+       <LINE>016</LINE>
        <COLUMN>029</COLUMN>
        <LENGTH>021</LENGTH>
        <VISLENGTH>015</VISLENGTH>
@@ -4186,7 +4303,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT17</NAME>
        <TEXT>Extra_$</TEXT>
-       <LINE>014</LINE>
+       <LINE>016</LINE>
        <COLUMN>046</COLUMN>
        <LENGTH>007</LENGTH>
        <VISLENGTH>007</VISLENGTH>
@@ -4200,9 +4317,9 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>TEMPLATE</TYPE>
        <NAME>VBAK-ZZ4020_EXTRA</NAME>
-       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <TEXT>_____________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>014</LINE>
+       <LINE>016</LINE>
        <COLUMN>054</COLUMN>
        <LENGTH>021</LENGTH>
        <VISLENGTH>012</VISLENGTH>
@@ -4220,7 +4337,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT18</NAME>
        <TEXT>Payment_Date</TEXT>
-       <LINE>015</LINE>
+       <LINE>017</LINE>
        <COLUMN>008</COLUMN>
        <LENGTH>012</LENGTH>
        <VISLENGTH>012</VISLENGTH>
@@ -4234,15 +4351,16 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>TEMPLATE</TYPE>
        <NAME>VBAK-ZZ4020_PAYMENTDATE</NAME>
-       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <TEXT>_____________________________________</TEXT>
        <ROLLING>X</ROLLING>
-       <LINE>015</LINE>
+       <LINE>017</LINE>
        <COLUMN>029</COLUMN>
-       <LENGTH>100</LENGTH>
+       <LENGTH>037</LENGTH>
        <VISLENGTH>037</VISLENGTH>
        <HEIGHT>001</HEIGHT>
-       <FORMAT>CHAR</FORMAT>
+       <FORMAT>DATS</FORMAT>
        <FROM_DICT>X</FROM_DICT>
+       <MODIFIC>X</MODIFIC>
        <OUTPUT_FLD>X</OUTPUT_FLD>
        <REQU_ENTRY>N</REQU_ENTRY>
       </RPY_DYFATC>
@@ -4252,7 +4370,7 @@
        <TYPE>TEXT</TYPE>
        <NAME>TXT19</NAME>
        <TEXT>Transaction_Type</TEXT>
-       <LINE>016</LINE>
+       <LINE>018</LINE>
        <COLUMN>008</COLUMN>
        <LENGTH>016</LENGTH>
        <VISLENGTH>016</VISLENGTH>
@@ -4265,15 +4383,17 @@
        <CONT_TYPE>SCREEN</CONT_TYPE>
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>TEMPLATE</TYPE>
-       <NAME>4020_TRANS_TYPE</NAME>
+       <NAME>VBAK-ZZ4020_TRANS_TYPE</NAME>
        <TEXT>_____________________________________</TEXT>
        <DROPDOWN>L</DROPDOWN>
-       <LINE>016</LINE>
+       <LINE>018</LINE>
        <COLUMN>029</COLUMN>
        <LENGTH>037</LENGTH>
        <VISLENGTH>037</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <MODIFIC>X</MODIFIC>
        <INPUT_FLD>X</INPUT_FLD>
        <OUTPUT_FLD>X</OUTPUT_FLD>
       </RPY_DYFATC>
@@ -4304,6 +4424,12 @@
       </RPY_DYFLOW>
       <RPY_DYFLOW>
        <LINE> MODULE USER_COMMAND_4020.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE> MODULE RUN_TRANSACTION_RESULT_4020.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE> MODULE PAYMENT_METHOD_4020.</LINE>
       </RPY_DYFLOW>
      </FLOW_LOGIC>
     </item>

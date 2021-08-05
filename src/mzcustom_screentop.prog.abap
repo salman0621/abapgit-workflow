@@ -2473,11 +2473,24 @@ ENDMODULE.
 *       text
 *----------------------------------------------------------------------*
 MODULE STATUS_4020 OUTPUT.
-  IF SY-DYNNR = '4020'.
+  IF SY-DYNNR = '4020' and SY-UCOMM = 'T\15'.
     VBAK-ZZ4020_SALES_ORDER_ID = VBAK-VBELN.
     CLEAR: GS_VALUES, GT_VALUES[].
     TRY.
         CUSTOMERID = VBAK-KUNNR.
+        CLEAR: GS_VALUES, GT_VALUES[].
+        GS_VALUES-TEXT = 'Checking'.
+        GS_VALUES-KEY = 'Checking'.
+        APPEND GS_VALUES TO GT_VALUES.
+        GS_VALUES-TEXT = 'Savings'.
+        GS_VALUES-KEY = 'Savings'.
+        APPEND GS_VALUES TO GT_VALUES.
+        GT_ID = 'VBAK-ZZ4020_ACCOUNT_TYPE'.
+
+        CALL FUNCTION 'VRM_SET_VALUES'
+          EXPORTING
+            ID     = GT_ID
+            VALUES = GT_VALUES.
         CLEAR: GS_VALUES, GT_VALUES[].
         CALL FUNCTION 'ZEBIZ_PAYMENTMETHODS'
           EXPORTING
@@ -2497,45 +2510,49 @@ MODULE STATUS_4020 OUTPUT.
 
               GET_CUSTOMER_PAYMENT_METHOD_PR = WA_GET_CUD.
 
-            IF GET_CUSTOMER_PAYMENT_METHOD_PR-SECONDARY_SORT = '0'.
-               CONCATENATE GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_EXPIRATION+5(2) GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_EXPIRATION+2(2)
-            into EXDATE.
-              VBAK-ZZ4020_PAYMENT_METHOD = GET_CUSTOMER_PAYMENT_METHOD_PR-METHOD_ID.
-              VBAK-ZZ4020_CARD_NUMBER = GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_NUMBER.
-              VBAK-ZZ4020_CARDCODE = GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_CODE.
-              VBAK-ZZ4020_ACCT_HOLDER = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT_HOLDER_NAME.
-              VBAK-ZZ4020_ROUTING = GET_CUSTOMER_PAYMENT_METHOD_PR-ROUTING.
-              VBAK-ZZ4020_ACCOUNT = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT.
-              VBAK-ZZ4020_ADDRESS = GET_CUSTOMER_PAYMENT_METHOD_PR-AVS_STREET.
-              VBAK-ZZ4020_ZIP = GET_CUSTOMER_PAYMENT_METHOD_PR-AVS_ZIP.
- VBAK-ZZ4020_EXP_DATE = EXDATE.
+              IF GET_CUSTOMER_PAYMENT_METHOD_PR-SECONDARY_SORT = '0'.
+                IF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_NUMBER <> ''.
+                  CONCATENATE GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_EXPIRATION+5(2) GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_EXPIRATION+2(2)
+               INTO EXDATE.
+                ENDIF.
+                VBAK-ZZ4020_PAYMENT_METHOD = GET_CUSTOMER_PAYMENT_METHOD_PR-METHOD_ID.
+                VBAK-ZZ4020_CARD_NUMBER = GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_NUMBER.
+                VBAK-ZZ4020_CARDCODE = GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_CODE.
+                VBAK-ZZ4020_ACCT_HOLDER = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT_HOLDER_NAME.
+                VBAK-ZZ4020_ROUTING = GET_CUSTOMER_PAYMENT_METHOD_PR-ROUTING.
+                VBAK-ZZ4020_ACCOUNT = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT.
+                VBAK-ZZ4020_ACCOUNT_TYPE = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT_TYPE.
+                VBAK-ZZ4020_ADDRESS = GET_CUSTOMER_PAYMENT_METHOD_PR-AVS_STREET.
+                VBAK-ZZ4020_ZIP = GET_CUSTOMER_PAYMENT_METHOD_PR-AVS_ZIP.
+                VBAK-ZZ4020_EXP_DATE = EXDATE.
 *              VBAK-ACCOUNT_TYPE = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT_TYPE.
-              VBAK-ZZ4020_METHOD = GET_CUSTOMER_PAYMENT_METHOD_PR-METHOD_NAME.
-              IF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'V'.
-                VBAK-ZZ4020_CARDNAME = 'VISA'.
-              ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'M'.
-                VBAK-ZZ4020_CARDNAME = 'Ma'.
-              ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'A'.
-                VBAK-ZZ4020_CARDNAME = 'Am'.
-              ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'DS'.
-                VBAK-ZZ4020_CARDNAME = 'Disc'.
-              ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = ''.
-                VBAK-ZZ4020_CARDNAME = 'eCheck'.
-              ELSE.
-                VBAK-ZZ4020_CARDNAME = GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE.
+                VBAK-ZZ4020_METHOD = GET_CUSTOMER_PAYMENT_METHOD_PR-METHOD_NAME.
+                IF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'V'.
+                  VBAK-ZZ4020_CARDNAME = 'VISA'.
+                ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'M'.
+                  VBAK-ZZ4020_CARDNAME = 'Ma'.
+                ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'A'.
+                  VBAK-ZZ4020_CARDNAME = 'Am'.
+                ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'DS'.
+                  VBAK-ZZ4020_CARDNAME = 'Disc'.
+                ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = ''.
+                  VBAK-ZZ4020_CARDNAME = 'eCheck'.
+                ELSE.
+                  VBAK-ZZ4020_CARDNAME = GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE.
 
+                ENDIF.
+                SELECT SINGLE * FROM ZEBIZ_CUSTOMER INTO CWA
+                      WHERE CUSTOMERID = VBAK-KUNNR AND PAYMENT_METHOD = GET_CUSTOMER_PAYMENT_METHOD_PR-METHOD_ID
+                    .
+
+                VBAK-ZZ4020_ADDRESS = CWA-ADDRESS.
+                VBAK-ZZ4020_ZIP = CWA-ZIP.
+                VBAK-ZZ4020_CITY = CWA-CITY.
+                VBAK-ZZ4020_STATE = CWA-STATE.
+                VBAK-ZZ4020_EMAIL = CWA-EMAIL.
+                VBAK-ZZ4020_AMOUNT = VBAK-NETWR.
+                VBAK-ZZ4020_PAYMENTDATE = VBAK-AUDAT.
               ENDIF.
-  SELECT SINGLE * FROM ZEBIZ_CUSTOMER INTO CWA
-        WHERE CUSTOMERID = VBAK-KUNNR AND PAYMENT_METHOD = GET_CUSTOMER_PAYMENT_METHOD_PR-METHOD_ID
-      .
-
-           VBAK-ZZ4020_ADDRESS = CWA-ADDRESS.
-           VBAK-ZZ4020_ZIP = CWA-ZIP.
-           VBAK-ZZ4020_CITY = CWA-CITY.
-           VBAK-ZZ4020_STATE = CWA-STATE.
-           VBAK-ZZ4020_EMAIL = CWA-EMAIL.
-           VBAK-ZZ4020_AMOUNT = VBAK-NETWR.
-            ENDIF.
             CATCH CX_AI_SYSTEM_FAULT INTO EXC.
               MSG = EXC->GET_TEXT( ).
               WRITE:/  MSG.
@@ -2560,7 +2577,152 @@ MODULE STATUS_4020 OUTPUT.
       EXPORTING
         ID     = GT_ID
         VALUES = GT_VALUES.
-  ENDIF.
+    CLEAR: GS_VALUES, GT_VALUES[].
+    GS_VALUES-TEXT = 'AuthOnly'.
+    GS_VALUES-KEY = 'AuthOnly'.
+    APPEND GS_VALUES TO GT_VALUES.
+    GS_VALUES-TEXT = 'Capture'.
+    GS_VALUES-KEY = 'Capture'.
+    APPEND GS_VALUES TO GT_VALUES.
+    GT_ID = 'VBAK-ZZ4020_TRANS_TYPE'.
+
+    CALL FUNCTION 'VRM_SET_VALUES'
+      EXPORTING
+        ID     = GT_ID
+        VALUES = GT_VALUES.
+
+    VBAK-ZZ4020_TRANS_TYPE = 'AuthOnly'.
+    VBAK-ZZ4020_EXTRA = '0.0'.
+    ENDIF.
+ IF SY-DYNNR = '4020'.
+    LOOP AT SCREEN.
+      IF VBAK-ZZ4020_CARD_NUMBER <> ''.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ACCOUNT_TYPE'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ACCOUNT'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ROUTING'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT11'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT20'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT21'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+            IF SCREEN-NAME = 'VBAK-ZZ4020_CARD_NUMBER'.
+            SCREEN-ACTIVE = 1. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'VBAK-ZZ4020_CARDCODE'.
+            SCREEN-ACTIVE = 1. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'VBAK-ZZ4020_EXP_DATE'.
+            SCREEN-ACTIVE = 1. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'TXT3'.
+            SCREEN-INVISIBLE = 0. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'TXT4'.
+            SCREEN-INVISIBLE = 0. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'TXT5'.
+            SCREEN-INVISIBLE = 0. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+
+      ELSEIF VBAK-ZZ4020_ACCOUNT <> ''.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ACCOUNT_TYPE'.
+          SCREEN-ACTIVE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ACCOUNT'.
+          SCREEN-ACTIVE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ROUTING'.
+          SCREEN-ACTIVE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT11'.
+          SCREEN-INVISIBLE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT20'.
+          SCREEN-INVISIBLE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT21'.
+          SCREEN-INVISIBLE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_CARD_NUMBER'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_CARDCODE'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_EXP_DATE'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT3'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT4'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT5'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+
+      ENDIF.
+    ENDLOOP.
+endif.
 ENDMODULE.
 *&---------------------------------------------------------------------*
 *&      Module  USER_COMMAND_4020  INPUT
@@ -2620,5 +2782,239 @@ MODULE ACCOUNTTYPE INPUT.
   IF SY-UCOMM = 'FCT_TYP'.
     RECEIPTNUM = ZEBIZ_CUSTOMER-ACCOUNT_TYPE.
     ZEBIZ_CUSTOMER-ACCOUNT_TYPE = RECEIPTNUM.
+  ENDIF.
+ENDMODULE.
+*&---------------------------------------------------------------------*
+*&      Module  RUN_TRANSACTION_RESULT_4020  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE RUN_TRANSACTION_RESULT_4020 INPUT.
+  IF SY-UCOMM = 'ENT1' AND SY-DYNNR = '4020'.
+
+    IF VBAK-ZZ4020_RESULT = ''.
+      MESSAGE 'Please run trasction first ' TYPE 'I' DISPLAY LIKE 'E'.
+      SY-UCOMM = 'ENT1'.
+      " FCODE = 'FCT_TRS'.
+      RETURN.
+
+    ENDIF.
+  ENDIF.
+ENDMODULE.
+*&---------------------------------------------------------------------*
+*&      Module  PAYMENT_METHOD_4020  INPUT
+*&---------------------------------------------------------------------*
+*       text
+*----------------------------------------------------------------------*
+MODULE PAYMENT_METHOD_4020 INPUT.
+ IF SY-UCOMM = 'SICH' AND SY-DYNNR = '4020'.
+    VAL = VBAK-ZZ4020_PAYMENT_METHOD.
+
+    TRY.
+        CUSTOMERID = VBAK-KUNNR.
+ SELECT SINGLE * FROM ZEBIZ_CUSTOMER INTO CWA
+WHERE CUSTOMERID = KNA1-KUNNR AND PAYMENT_METHOD = VAL.
+         TRY.
+          PAYMENT_METHOD_ID = VAL.
+          CALL FUNCTION 'ZEBIZ_GETPAYMENTMETHOD'
+            EXPORTING
+              CUSTOMER_ID                    = CUSTOMERID
+              PAYMENT_METHOD_ID              = PAYMENT_METHOD_ID
+            IMPORTING
+              GET_CUSTOMER_PAYMENT_METHOD_PR = GET_CUSTOMER_PAYMENT_METHOD_PR.
+
+                IF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_NUMBER <> ''.
+                  CONCATENATE GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_EXPIRATION+5(2) GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_EXPIRATION+2(2)
+               INTO EXDATE.
+                ENDIF.
+                VBAK-ZZ4020_PAYMENT_METHOD = GET_CUSTOMER_PAYMENT_METHOD_PR-METHOD_ID.
+                VBAK-ZZ4020_CARD_NUMBER = GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_NUMBER.
+                VBAK-ZZ4020_CARDCODE = GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_CODE.
+                VBAK-ZZ4020_ACCT_HOLDER = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT_HOLDER_NAME.
+                VBAK-ZZ4020_ROUTING = GET_CUSTOMER_PAYMENT_METHOD_PR-ROUTING.
+                VBAK-ZZ4020_ACCOUNT = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT.
+                VBAK-ZZ4020_ACCOUNT_TYPE = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT_TYPE.
+                VBAK-ZZ4020_ADDRESS = GET_CUSTOMER_PAYMENT_METHOD_PR-AVS_STREET.
+                VBAK-ZZ4020_ZIP = GET_CUSTOMER_PAYMENT_METHOD_PR-AVS_ZIP.
+                VBAK-ZZ4020_EXP_DATE = EXDATE.
+*              VBAK-ACCOUNT_TYPE = GET_CUSTOMER_PAYMENT_METHOD_PR-ACCOUNT_TYPE.
+                VBAK-ZZ4020_METHOD = GET_CUSTOMER_PAYMENT_METHOD_PR-METHOD_NAME.
+                IF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'V'.
+                  VBAK-ZZ4020_CARDNAME = 'VISA'.
+                ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'M'.
+                  VBAK-ZZ4020_CARDNAME = 'Ma'.
+                ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'A'.
+                  VBAK-ZZ4020_CARDNAME = 'Am'.
+                ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = 'DS'.
+                  VBAK-ZZ4020_CARDNAME = 'Disc'.
+                ELSEIF GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE = ''.
+                  VBAK-ZZ4020_CARDNAME = 'eCheck'.
+                ELSE.
+                  VBAK-ZZ4020_CARDNAME = GET_CUSTOMER_PAYMENT_METHOD_PR-CARD_TYPE.
+
+                ENDIF.
+                SELECT SINGLE * FROM ZEBIZ_CUSTOMER INTO CWA
+                      WHERE CUSTOMERID = VBAK-KUNNR AND PAYMENT_METHOD = GET_CUSTOMER_PAYMENT_METHOD_PR-METHOD_ID
+                    .
+
+                VBAK-ZZ4020_ADDRESS = CWA-ADDRESS.
+                VBAK-ZZ4020_ZIP = CWA-ZIP.
+                VBAK-ZZ4020_CITY = CWA-CITY.
+                VBAK-ZZ4020_STATE = CWA-STATE.
+                VBAK-ZZ4020_EMAIL = CWA-EMAIL.
+                VBAK-ZZ4020_AMOUNT = VBAK-NETWR.
+                VBAK-ZZ4020_PAYMENTDATE = VBAK-AUDAT.
+
+          IF GET_CUSTOMER_PAYMENT_METHOD_PR-SECONDARY_SORT = '0'.
+            ZEBIZ_CUSTOMER-DEFAULT_CARD = 'X'.
+          ELSE.
+            ZEBIZ_CUSTOMER-DEFAULT_CARD = ''.
+          ENDIF.
+        CATCH CX_AI_SYSTEM_FAULT INTO EXC.
+          MSG = EXC->GET_TEXT( ).
+          WRITE:/  MSG.
+*CATCH zcx_zsqrt_exception.
+        CATCH CX_AI_APPLICATION_FAULT INTO EXC.
+          MSG = EXC->GET_TEXT( ).
+          WRITE:/  MSG.
+      ENDTRY.
+        CLEAR: GS_VALUES, GT_VALUES[].
+        CATCH CX_AI_SYSTEM_FAULT INTO EXC.
+        MSG = EXC->GET_TEXT( ).
+        WRITE:/  MSG.
+*CATCH zcx_zsqrt_exception.
+      CATCH CX_AI_APPLICATION_FAULT INTO EXC.
+        MSG = EXC->GET_TEXT( ).
+        WRITE:/  MSG.
+    ENDTRY.
+
+    LOOP AT SCREEN.
+      IF VBAK-ZZ4020_CARD_NUMBER <> ''.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ACCOUNT_TYPE'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ACCOUNT'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ROUTING'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT11'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT20'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT21'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+            IF SCREEN-NAME = 'VBAK-ZZ4020_CARD_NUMBER'.
+            SCREEN-ACTIVE = 1. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'VBAK-ZZ4020_CARDCODE'.
+            SCREEN-ACTIVE = 1. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'VBAK-ZZ4020_EXP_DATE'.
+            SCREEN-ACTIVE = 1. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'TXT3'.
+            SCREEN-INVISIBLE = 0. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'TXT4'.
+            SCREEN-INVISIBLE = 0. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+          IF SCREEN-NAME = 'TXT5'.
+            SCREEN-INVISIBLE = 0. "this makes your field invisible
+            "screen-active = 1.
+            MODIFY SCREEN.
+          ENDIF.
+
+      ELSEIF VBAK-ZZ4020_ACCOUNT <> ''.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ACCOUNT_TYPE'.
+          SCREEN-ACTIVE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ACCOUNT'.
+          SCREEN-ACTIVE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_ROUTING'.
+          SCREEN-ACTIVE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT11'.
+          SCREEN-INVISIBLE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT20'.
+          SCREEN-INVISIBLE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT21'.
+          SCREEN-INVISIBLE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_CARD_NUMBER'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_CARDCODE'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'VBAK-ZZ4020_EXP_DATE'.
+          SCREEN-ACTIVE = 0. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT3'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT4'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+        IF SCREEN-NAME = 'TXT5'.
+          SCREEN-INVISIBLE = 1. "this makes your field invisible
+          "screen-active = 1.
+          MODIFY SCREEN.
+        ENDIF.
+
+      ENDIF.
+    ENDLOOP.
+
   ENDIF.
 ENDMODULE.
