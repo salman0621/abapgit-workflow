@@ -2940,7 +2940,7 @@ MODULE PAYMENT_METHOD_4020 INPUT.
         ENDIF.
         IF SCREEN-NAME = 'TXT11'.
           SCREEN-INVISIBLE = 1. "this makes your field invisible
-          "screen-active = 1.
+          "screen-active = 1
           MODIFY SCREEN.
         ENDIF.
         IF SCREEN-NAME = 'TXT20'.
