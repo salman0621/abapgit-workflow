@@ -48,7 +48,7 @@ FUNCTION ZEBIZ_RUNTRANSACTIONS.
           LOGTEXT = MSG.
       .
 
-      MESSAGE  W398(00) WITH MSG.
+       MESSAGE  MSG TYPE 'I'.
 *CATCH zcx_zsqrt_exception.
     CATCH CX_AI_APPLICATION_FAULT INTO EXC.
       MSG = EXC->GET_TEXT( ).
@@ -58,7 +58,7 @@ FUNCTION ZEBIZ_RUNTRANSACTIONS.
           LOGTEXT = MSG.
       .
 
-      MESSAGE  W398(00) WITH MSG.
+       MESSAGE  MSG TYPE 'I'.
 *      MESSAGE msg TYPE 'E'.
   ENDTRY.
 

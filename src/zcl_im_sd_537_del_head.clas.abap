@@ -19,7 +19,7 @@ CLASS ZCL_IM_SD_537_DEL_HEAD IMPLEMENTATION.
      ef_caption = 'Aditional Data'. "Screen Caption
   ef_program = 'SAPMZCUSTOM_SCREEN'."SAPL Followed by the Function group created ZSD537_HEAD
   ef_position = 4. " Tab Position
-  ef_dynpro  = '4020'. " Screen Number
+  ef_dynpro  = '4098'. " Screen Number
   cs_v50agl_cust = 'X'.
   endmethod.
 

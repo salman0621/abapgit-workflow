@@ -48,7 +48,7 @@ call method proxy_test->GET_CUSTOMER_TOKEN
   EXPORTING
     LOGTEXT = msg.
   .
-          MESSAGE  W398(00) WITH MSG.
+          MESSAGE  MSG TYPE 'I' DISPLAY LIKE 'E'.
 *CATCH zcx_zsqrt_exception.
         CATCH CX_AI_APPLICATION_FAULT INTO EXC.
           msg = exc->GET_TEXT( ).
@@ -57,7 +57,7 @@ call method proxy_test->GET_CUSTOMER_TOKEN
   EXPORTING
     LOGTEXT = msg.
   .
-          MESSAGE  W398(00) WITH MSG.
+           MESSAGE  MSG TYPE 'I'.
       ENDTRY.
 *     there is one input value for this service call for user id
 
@@ -76,22 +76,32 @@ call method proxy_test->GET_CUSTOMER_TOKEN
 *     process the output
       RUN_CUSTOMER_TRANSACTION_RESUL = OUTPUT-RUN_CUSTOMER_TRANSACTION_RESUL.
     CATCH CX_AI_SYSTEM_FAULT INTO EXC.
-    msg = exc->GET_TEXT( ).
+   msg = exc->GET_TEXT( ).
        CONCATENATE 'Error in RUN_CUSTOMER_TRANSACTION :' msg into msg.
           CALL FUNCTION 'ZEBIZ_LOGFILE'
   EXPORTING
     LOGTEXT = msg.
   .
-      MESSAGE  W398(00) WITH MSG.
+   DATA itab(64) OCCURS 0 WITH HEADER LINE.
+
+    SPLIT MSG AT 'Error:' INTO TABLE itab.
+
+    LOOP AT itab.
+
+      RUN_CUSTOMER_TRANSACTION_RESUL-Error = itab.
+
+    ENDLOOP.
+*RUN_CUSTOMER_TRANSACTION_RESUL-Error = MSG.
+      MESSAGE  MSG TYPE 'I' DISPLAY LIKE 'E'.
 *CATCH zcx_zsqrt_exception.
     CATCH CX_AI_APPLICATION_FAULT INTO EXC.
-     msg = exc->GET_TEXT( ).
+     msg = exc->GET_LONGTEXT( ).
        CONCATENATE 'Error in RUN_CUSTOMER_TRANSACTION :' msg into msg.
           CALL FUNCTION 'ZEBIZ_LOGFILE'
   EXPORTING
     LOGTEXT = msg.
   .
-      MESSAGE  W398(00) WITH MSG.
+          MESSAGE  MSG TYPE 'I'.
 *      MESSAGE msg TYPE 'E'.
   ENDTRY.
 ENDFUNCTION.

@@ -9,6 +9,64 @@
    </INCLUDES>
    <FUNCTIONS>
     <item>
+     <FUNCNAME>ZCHECKAVSCODE</FUNCNAME>
+     <SHORT_TEXT>CheckAVSCode</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>CODE</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>STRING</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RESULT</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>/ASU/ADHOC_STEP</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>CODE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RESULT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>ASU: AdHoc-Step - domain BOOLE: TRUE (=&apos;X&apos;) and FALSE (=&apos; &apos;)</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZCHECKCVVCODE</FUNCNAME>
+     <SHORT_TEXT>CheckAVSCode</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>CODE</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>STRING</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RESULT</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>/ASU/ADHOC_STEP</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>CODE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RESULT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>ASU: AdHoc-Step - domain BOOLE: TRUE (=&apos;X&apos;) and FALSE (=&apos; &apos;)</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
      <FUNCNAME>ZEBIZ_ADDCUSTOMER</FUNCNAME>
      <SHORT_TEXT>EBIZ Payment Methods</SHORT_TEXT>
      <IMPORT>
@@ -239,6 +297,24 @@
      </DOCUMENTATION>
     </item>
     <item>
+     <FUNCNAME>ZEBIZ_GETMERCHANTTRANSACTIONDA</FUNCNAME>
+     <SHORT_TEXT>EBIZ Payment Methods</SHORT_TEXT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>GET_MERCHANT_TRANSACTION_DATA</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZEBIZ_CHARGEMERCHANT_TRANSACTI</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>GET_MERCHANT_TRANSACTION_DATA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Proxy Table Type (generated)</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
      <FUNCNAME>ZEBIZ_GETPAYMENTMETHOD</FUNCNAME>
      <SHORT_TEXT>EBIZ Payment Methods</SHORT_TEXT>
      <IMPORT>
@@ -294,6 +370,11 @@
        <REFERENCE>X</REFERENCE>
        <TYP>STRING</TYP>
       </RSIMP>
+      <RSIMP>
+       <PARAMETER>ORDERID</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>/ASU/CHAR72</TYP>
+      </RSIMP>
      </IMPORT>
      <EXPORT>
       <RSEXP>
@@ -315,6 +396,11 @@
       <RSFDO>
        <PARAMETER>TODATE</PARAMETER>
        <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ORDERID</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Long text - line width 72 (copy CHAR72)</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>SEARCH_TRANSACTIONS_RESULT</PARAMETER>
@@ -750,6 +836,64 @@
        <PARAMETER>UPDATE_CUSTOMER_PAYMENT_METHOD</PARAMETER>
        <KIND>P</KIND>
        <STEXT>XSD Truth Value: True/False [ext.]</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZGETAVSDESCRIPTION</FUNCNAME>
+     <SHORT_TEXT>GetAVSDescription</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>CODE</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>STRING</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>STRDESCRIPTION</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>STRING</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>CODE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>STRDESCRIPTION</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZHANDLERESPONSE</FUNCNAME>
+     <SHORT_TEXT>Handle Response</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>RUN_CUSTOMER_TRANSACTION_RESUL</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZEBIZ_CHARGETRANSACTION_RESPON</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RESULT</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>/ASU/ADHOC_STEP</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>RUN_CUSTOMER_TRANSACTION_RESUL</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Proxy Structure (generated)</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RESULT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>ASU: AdHoc-Step - domain BOOLE: TRUE (=&apos;X&apos;) and FALSE (=&apos; &apos;)</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>

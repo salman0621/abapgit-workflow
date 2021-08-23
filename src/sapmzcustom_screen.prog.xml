@@ -19,7 +19,7 @@
       <TYPE>I</TYPE>
       <NEXTSCREEN>4009</NEXTSCREEN>
       <LINES>027</LINES>
-      <COLUMNS>120</COLUMNS>
+      <COLUMNS>140</COLUMNS>
      </HEADER>
      <CONTAINERS>
       <RPY_DYCATT>
@@ -32,7 +32,7 @@
        <ELEMENT_OF>SCREEN</ELEMENT_OF>
        <LINE>002</LINE>
        <COLUMN>002</COLUMN>
-       <LENGTH>119</LENGTH>
+       <LENGTH>139</LENGTH>
        <HEIGHT>026</HEIGHT>
       </RPY_DYCATT>
       <RPY_DYCATT>
@@ -41,7 +41,7 @@
        <ELEMENT_OF>EBIZ</ELEMENT_OF>
        <LINE>004</LINE>
        <COLUMN>003</COLUMN>
-       <LENGTH>117</LENGTH>
+       <LENGTH>137</LENGTH>
        <HEIGHT>023</HEIGHT>
        <C_SCROLL_V>X</C_SCROLL_V>
        <C_SCROLL_H>X</C_SCROLL_H>
@@ -52,7 +52,7 @@
        <ELEMENT_OF>EBIZ</ELEMENT_OF>
        <LINE>004</LINE>
        <COLUMN>003</COLUMN>
-       <LENGTH>117</LENGTH>
+       <LENGTH>137</LENGTH>
        <HEIGHT>023</HEIGHT>
        <C_SCROLL_V>X</C_SCROLL_V>
        <C_SCROLL_H>X</C_SCROLL_H>
@@ -63,7 +63,7 @@
        <ELEMENT_OF>EBIZ</ELEMENT_OF>
        <LINE>004</LINE>
        <COLUMN>003</COLUMN>
-       <LENGTH>117</LENGTH>
+       <LENGTH>135</LENGTH>
        <HEIGHT>023</HEIGHT>
        <C_SCROLL_V>X</C_SCROLL_V>
        <C_SCROLL_H>X</C_SCROLL_H>
@@ -74,7 +74,7 @@
        <ELEMENT_OF>EBIZ</ELEMENT_OF>
        <LINE>004</LINE>
        <COLUMN>003</COLUMN>
-       <LENGTH>117</LENGTH>
+       <LENGTH>137</LENGTH>
        <HEIGHT>023</HEIGHT>
        <C_SCROLL_V>X</C_SCROLL_V>
        <C_SCROLL_H>X</C_SCROLL_H>
@@ -3072,7 +3072,7 @@
       <TYPE>I</TYPE>
       <NEXTSCREEN>0000</NEXTSCREEN>
       <LINES>027</LINES>
-      <COLUMNS>120</COLUMNS>
+      <COLUMNS>140</COLUMNS>
      </HEADER>
      <CONTAINERS>
       <RPY_DYCATT>
@@ -3085,7 +3085,7 @@
        <ELEMENT_OF>SCREEN</ELEMENT_OF>
        <LINE>006</LINE>
        <COLUMN>001</COLUMN>
-       <LENGTH>120</LENGTH>
+       <LENGTH>140</LENGTH>
        <HEIGHT>012</HEIGHT>
        <C_RESIZE_H>X</C_RESIZE_H>
        <C_SCROLL_V>X</C_SCROLL_V>
@@ -3098,6 +3098,7 @@
        <TC_SEL_LNS>MULTIPLE</TC_SEL_LNS>
        <TC_SEL_CLS>SINGLE</TC_SEL_CLS>
        <TC_LSEL_CL>X</TC_LSEL_CL>
+       <TC_FIXCOL>004</TC_FIXCOL>
       </RPY_DYCATT>
      </CONTAINERS>
      <FIELDS>
@@ -3244,10 +3245,25 @@
        <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
        <CONT_NAME>MATRIX</CONT_NAME>
        <TYPE>TEXT</TYPE>
+       <NAME>M4</NAME>
+       <TEXT>REF_NUM</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>001</COLUMN>
+       <LENGTH>007</LENGTH>
+       <VISLENGTH>012</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
        <NAME>M1</NAME>
        <TEXT>Customer_ID</TEXT>
        <LINE>001</LINE>
-       <COLUMN>001</COLUMN>
+       <COLUMN>002</COLUMN>
        <LENGTH>011</LENGTH>
        <VISLENGTH>015</VISLENGTH>
        <HEIGHT>001</HEIGHT>
@@ -3262,7 +3278,7 @@
        <NAME>M2</NAME>
        <TEXT>Invoice_ID</TEXT>
        <LINE>001</LINE>
-       <COLUMN>002</COLUMN>
+       <COLUMN>003</COLUMN>
        <LENGTH>010</LENGTH>
        <VISLENGTH>015</VISLENGTH>
        <HEIGHT>001</HEIGHT>
@@ -3277,24 +3293,9 @@
        <NAME>M3</NAME>
        <TEXT>Order_ID</TEXT>
        <LINE>001</LINE>
-       <COLUMN>003</COLUMN>
+       <COLUMN>004</COLUMN>
        <LENGTH>008</LENGTH>
        <VISLENGTH>015</VISLENGTH>
-       <HEIGHT>001</HEIGHT>
-       <FORMAT>CHAR</FORMAT>
-       <REQU_ENTRY>N</REQU_ENTRY>
-       <TC_HEADING>X</TC_HEADING>
-      </RPY_DYFATC>
-      <RPY_DYFATC>
-       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
-       <CONT_NAME>MATRIX</CONT_NAME>
-       <TYPE>TEXT</TYPE>
-       <NAME>M4</NAME>
-       <TEXT>REF_NUM</TEXT>
-       <LINE>001</LINE>
-       <COLUMN>004</COLUMN>
-       <LENGTH>007</LENGTH>
-       <VISLENGTH>012</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <REQU_ENTRY>N</REQU_ENTRY>
@@ -3438,13 +3439,13 @@
        <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
        <CONT_NAME>MATRIX</CONT_NAME>
        <TYPE>TEMPLATE</TYPE>
-       <NAME>ZEBIZ_MATRIX-CUSTOMER_ID</NAME>
+       <NAME>ZEBIZ_MATRIX-REF_NUM</NAME>
        <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
        <LINE>001</LINE>
        <COLUMN>001</COLUMN>
        <LENGTH>255</LENGTH>
-       <VISLENGTH>015</VISLENGTH>
+       <VISLENGTH>012</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
@@ -3456,7 +3457,7 @@
        <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
        <CONT_NAME>MATRIX</CONT_NAME>
        <TYPE>TEMPLATE</TYPE>
-       <NAME>ZEBIZ_MATRIX-INVOICE</NAME>
+       <NAME>ZEBIZ_MATRIX-CUSTOMER_ID</NAME>
        <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
        <LINE>001</LINE>
@@ -3474,7 +3475,7 @@
        <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
        <CONT_NAME>MATRIX</CONT_NAME>
        <TYPE>TEMPLATE</TYPE>
-       <NAME>ZEBIZ_MATRIX-ORDER_ID</NAME>
+       <NAME>ZEBIZ_MATRIX-INVOICE</NAME>
        <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
        <LINE>001</LINE>
@@ -3492,13 +3493,13 @@
        <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
        <CONT_NAME>MATRIX</CONT_NAME>
        <TYPE>TEMPLATE</TYPE>
-       <NAME>ZEBIZ_MATRIX-REF_NUM</NAME>
+       <NAME>ZEBIZ_MATRIX-ORDER_ID</NAME>
        <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
        <LINE>001</LINE>
        <COLUMN>004</COLUMN>
        <LENGTH>255</LENGTH>
-       <VISLENGTH>012</VISLENGTH>
+       <VISLENGTH>015</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
        <FROM_DICT>X</FROM_DICT>
@@ -3617,11 +3618,11 @@
        <CONT_NAME>MATRIX</CONT_NAME>
        <TYPE>TEMPLATE</TYPE>
        <NAME>ZEBIZ_MATRIX-EMAIL</NAME>
-       <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
+       <TEXT>__________________________________________________</TEXT>
        <ROLLING>X</ROLLING>
        <LINE>001</LINE>
        <COLUMN>011</COLUMN>
-       <LENGTH>255</LENGTH>
+       <LENGTH>050</LENGTH>
        <VISLENGTH>025</VISLENGTH>
        <HEIGHT>001</HEIGHT>
        <FORMAT>CHAR</FORMAT>
@@ -3653,7 +3654,7 @@
        <LINE>PROCESS BEFORE OUTPUT.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>Module GETDATA_4012.</LINE>
+       <LINE>  MODULE GETDATA_4012.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
        <LINE>  LOOP AT CT_MATRIX INTO CWA_MATRIX WITH CONTROL MATRIX.</LINE>
@@ -3675,10 +3676,10 @@
        <LINE>PROCESS AFTER INPUT.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>MODULE Search_4012.</LINE>
+       <LINE>  MODULE SEARCH_4012.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>MODULE REFRESH_4012.</LINE>
+       <LINE>  MODULE REFRESH_4012.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW/>
       <RPY_DYFLOW/>
@@ -3686,13 +3687,13 @@
        <LINE>  LOOP AT CT_MATRIX.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>MODULE EMAIL_4019.</LINE>
+       <LINE>    MODULE EMAIL_4019.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>  MODULE VOID_4012.</LINE>
+       <LINE>    MODULE VOID_4012.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>    MODULE Template_4019.</LINE>
+       <LINE>    MODULE TEMPLATE_4019.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
        <LINE>  ENDLOOP.</LINE>
@@ -4430,6 +4431,608 @@
       </RPY_DYFLOW>
       <RPY_DYFLOW>
        <LINE> MODULE PAYMENT_METHOD_4020.</LINE>
+      </RPY_DYFLOW>
+     </FLOW_LOGIC>
+    </item>
+    <item>
+     <HEADER>
+      <PROGRAM>SAPMZCUSTOM_SCREEN</PROGRAM>
+      <SCREEN>4098</SCREEN>
+      <LANGUAGE>E</LANGUAGE>
+      <DESCRIPT>Transaction Log</DESCRIPT>
+      <TYPE>I</TYPE>
+      <NEXTSCREEN>4098</NEXTSCREEN>
+      <LINES>027</LINES>
+      <COLUMNS>140</COLUMNS>
+     </HEADER>
+     <CONTAINERS>
+      <RPY_DYCATT>
+       <TYPE>SCREEN</TYPE>
+       <NAME>SCREEN</NAME>
+      </RPY_DYCATT>
+      <RPY_DYCATT>
+       <TYPE>TABLE_CTRL</TYPE>
+       <NAME>4098_MATRIX</NAME>
+       <ELEMENT_OF>SCREEN</ELEMENT_OF>
+       <LINE>002</LINE>
+       <COLUMN>002</COLUMN>
+       <LENGTH>139</LENGTH>
+       <HEIGHT>013</HEIGHT>
+       <C_RESIZE_V>X</C_RESIZE_V>
+       <C_RESIZE_H>X</C_RESIZE_H>
+       <C_SCROLL_V>X</C_SCROLL_V>
+       <C_SCROLL_H>X</C_SCROLL_H>
+       <TC_TABTYPE>ENTRY</TC_TABTYPE>
+       <TC_SEPAR_V>X</TC_SEPAR_V>
+       <TC_SEPAR_H>X</TC_SEPAR_H>
+       <TC_HEADER>X</TC_HEADER>
+       <TC_CONFIG>X</TC_CONFIG>
+       <TC_SEL_LNS>MULTIPLE</TC_SEL_LNS>
+       <TC_SEL_CLS>SINGLE</TC_SEL_CLS>
+       <TC_LSEL_CL>X</TC_LSEL_CL>
+       <TC_FIXCOL>003</TC_FIXCOL>
+      </RPY_DYCATT>
+     </CONTAINERS>
+     <FIELDS>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>PUSH</TYPE>
+       <NAME>VOID</NAME>
+       <TEXT>Void_Payment</TEXT>
+       <ICON_NAME>ICON_DELETE_ROW</ICON_NAME>
+       <WITH_ICON>X</WITH_ICON>
+       <LINE>001</LINE>
+       <COLUMN>002</COLUMN>
+       <LENGTH>017</LENGTH>
+       <VISLENGTH>015</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <PUSH_FCODE>FCT_VOID</PUSH_FCODE>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>OKCODE</TYPE>
+       <TEXT>____________________</TEXT>
+       <LENGTH>020</LENGTH>
+       <VISLENGTH>020</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <INPUT_FLD>X</INPUT_FLD>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT1</NAME>
+       <TEXT>Ref._No.</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>001</COLUMN>
+       <LENGTH>008</LENGTH>
+       <VISLENGTH>255</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT2</NAME>
+       <TEXT>Order</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>002</COLUMN>
+       <LENGTH>005</LENGTH>
+       <VISLENGTH>255</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT3</NAME>
+       <TEXT>Invoice</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>003</COLUMN>
+       <LENGTH>007</LENGTH>
+       <VISLENGTH>255</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT4</NAME>
+       <TEXT>Credit</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>004</COLUMN>
+       <LENGTH>006</LENGTH>
+       <VISLENGTH>021</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT5</NAME>
+       <TEXT>Command</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>005</COLUMN>
+       <LENGTH>007</LENGTH>
+       <VISLENGTH>255</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT6</NAME>
+       <TEXT>Amount</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>006</COLUMN>
+       <LENGTH>006</LENGTH>
+       <VISLENGTH>021</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT7</NAME>
+       <TEXT>Description</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>007</COLUMN>
+       <LENGTH>011</LENGTH>
+       <VISLENGTH>255</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT8</NAME>
+       <TEXT>Card_Holder</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>008</COLUMN>
+       <LENGTH>011</LENGTH>
+       <VISLENGTH>100</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT9</NAME>
+       <TEXT>Card_No.</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>009</COLUMN>
+       <LENGTH>008</LENGTH>
+       <VISLENGTH>020</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT10</NAME>
+       <TEXT>Result</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>010</COLUMN>
+       <LENGTH>006</LENGTH>
+       <VISLENGTH>100</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT11</NAME>
+       <TEXT>AVS</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>011</COLUMN>
+       <LENGTH>003</LENGTH>
+       <VISLENGTH>255</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT12</NAME>
+       <TEXT>Card_Code</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>012</COLUMN>
+       <LENGTH>009</LENGTH>
+       <VISLENGTH>100</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT13</NAME>
+       <TEXT>Card_Level</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>013</COLUMN>
+       <LENGTH>010</LENGTH>
+       <VISLENGTH>100</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT14</NAME>
+       <TEXT>Customer_ID</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>014</COLUMN>
+       <LENGTH>011</LENGTH>
+       <VISLENGTH>255</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>TXT15</NAME>
+       <TEXT>Process_Date</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>015</COLUMN>
+       <LENGTH>012</LENGTH>
+       <VISLENGTH>100</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>CHECK</TYPE>
+       <NAME>CSELECT</NAME>
+       <LINE>001</LINE>
+       <LENGTH>001</LENGTH>
+       <VISLENGTH>001</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <INPUT_FLD>X</INPUT_FLD>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <TC_SELCOL>X</TC_SELCOL>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-REF_NUM</NAME>
+       <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>001</COLUMN>
+       <LENGTH>255</LENGTH>
+       <VISLENGTH>012</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-ORDER_ID</NAME>
+       <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>002</COLUMN>
+       <LENGTH>255</LENGTH>
+       <VISLENGTH>012</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-INVOICE</NAME>
+       <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>003</COLUMN>
+       <LENGTH>255</LENGTH>
+       <VISLENGTH>012</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-CREDIT</NAME>
+       <TEXT>__.___.___.___.___,__</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>004</COLUMN>
+       <LENGTH>021</LENGTH>
+       <VISLENGTH>012</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>DEC</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-TRANSACTION_TYPE</NAME>
+       <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>005</COLUMN>
+       <LENGTH>255</LENGTH>
+       <VISLENGTH>015</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-AMOUNT</NAME>
+       <TEXT>__.___.___.___.___,__</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>006</COLUMN>
+       <LENGTH>021</LENGTH>
+       <VISLENGTH>012</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>DEC</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-DESCRIPTION</NAME>
+       <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>007</COLUMN>
+       <LENGTH>255</LENGTH>
+       <VISLENGTH>020</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-CARDHOLDER</NAME>
+       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>008</COLUMN>
+       <LENGTH>100</LENGTH>
+       <VISLENGTH>015</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-CARDNO</NAME>
+       <TEXT>____________________</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>009</COLUMN>
+       <LENGTH>020</LENGTH>
+       <VISLENGTH>020</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-STATUS</NAME>
+       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>010</COLUMN>
+       <LENGTH>100</LENGTH>
+       <VISLENGTH>015</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-AVS</NAME>
+       <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>011</COLUMN>
+       <LENGTH>255</LENGTH>
+       <VISLENGTH>040</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-CARDCODE</NAME>
+       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>012</COLUMN>
+       <LENGTH>100</LENGTH>
+       <VISLENGTH>020</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-CARDLEVEL</NAME>
+       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>013</COLUMN>
+       <LENGTH>100</LENGTH>
+       <VISLENGTH>020</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-CUSTOMER_ID</NAME>
+       <TEXT>____________________________________________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>014</COLUMN>
+       <LENGTH>255</LENGTH>
+       <VISLENGTH>020</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>4098_MATRIX</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZEBIZ_MATRIX-TRANSACTION_DATE</NAME>
+       <TEXT>____________________________________________________________________________________________________</TEXT>
+       <ROLLING>X</ROLLING>
+       <LINE>001</LINE>
+       <COLUMN>015</COLUMN>
+       <LENGTH>100</LENGTH>
+       <VISLENGTH>020</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+     </FIELDS>
+     <FLOW_LOGIC>
+      <RPY_DYFLOW>
+       <LINE>PROCESS BEFORE OUTPUT.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>MODULE GETDATA_4098.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>LOOP AT CT_MATRIX INTO CWA_MATRIX WITH CONTROL 4098_MATRIX.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>  MODULE FILL_MATRIX_4098.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>ENDLOOP.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>*</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>PROCESS AFTER INPUT.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>* MODULE USER_COMMAND_4098.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>LOOP AT CT_MATRIX.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>*  MODULE EMAIL_4019.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>  MODULE VOID_4098.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>*  MODULE Template_4019.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>ENDLOOP.</LINE>
       </RPY_DYFLOW>
      </FLOW_LOGIC>
     </item>

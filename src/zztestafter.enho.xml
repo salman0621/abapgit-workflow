@@ -20,7 +20,9 @@
      <SOURCE>
       <item>* IF VBAK-ZZ4020_RESULT = &apos;&apos;.</item>
       <item>  If SY-TCODE eq &apos;VA01&apos; or SY-TCODE eq &apos;VA02&apos;.</item>
-      <item>CALL SCREEN 4099 STARTING AT 5 5 ENDING AT 110 55.</item>
+      <item>    if VBAK-ZZ4020_OFFCHECK = &apos;X&apos;.</item>
+      <item>CALL SCREEN 4099 STARTING AT 10 1 ENDING AT 115 40.</item>
+      <item>ENDIF.</item>
       <item>endif.</item>
       <item>*endif.</item>
       <item>* if VBAK-ZZ4020_TRANS_TYPE = &apos;&apos; and sy-Tcode = &apos;VA02&apos; .</item>

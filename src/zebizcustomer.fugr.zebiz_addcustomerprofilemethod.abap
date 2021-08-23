@@ -57,7 +57,7 @@ SELECT SINGLE * FROM ZEBIZ_CONFIG INTO CWA
 * IMPORTING
 *   STATUS  =
   .
-       MESSAGE  W398(00) WITH msg.
+        MESSAGE  MSG TYPE 'I'.
        successs = 'Y'.
 *CATCH zcx_zsqrt_exception.
 CATCH cx_ai_application_fault into exc.
@@ -69,7 +69,7 @@ CATCH cx_ai_application_fault into exc.
 * IMPORTING
 *   STATUS  =
   .
-    MESSAGE  W398(00) WITH msg.
+     MESSAGE  MSG TYPE 'I'.
      successs = 'Y'.
 *      MESSAGE msg TYPE 'E'.
   endtry.

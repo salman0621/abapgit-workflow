@@ -46,7 +46,7 @@ call method proxy_test->GET_CUSTOMER_TOKEN
   EXPORTING
     LOGTEXT = msg.
   .
-          MESSAGE  W398(00) WITH MSG.
+           MESSAGE  MSG TYPE 'I'.
 *CATCH zcx_zsqrt_exception.
         CATCH CX_AI_APPLICATION_FAULT INTO EXC.
           msg = exc->GET_TEXT( ).
@@ -55,7 +55,7 @@ call method proxy_test->GET_CUSTOMER_TOKEN
   EXPORTING
     LOGTEXT = msg.
   .
-          MESSAGE  W398(00) WITH MSG.
+           MESSAGE  MSG TYPE 'I'.
       ENDTRY.
 Customer_Token = token_output-GET_CUSTOMER_TOKEN_RESULT.
 *
@@ -94,7 +94,7 @@ Customer_Token = token_output-GET_CUSTOMER_TOKEN_RESULT.
     LOGTEXT = msg.
   .
 
-       MESSAGE  W398(00) WITH msg.
+        MESSAGE  MSG TYPE 'I'.
 *CATCH zcx_zsqrt_exception.
 CATCH cx_ai_application_fault into exc.
       msg = exc->GET_TEXT( ).
@@ -104,7 +104,7 @@ CATCH cx_ai_application_fault into exc.
     LOGTEXT = msg.
   .
 
-    MESSAGE  W398(00) WITH msg.
+     MESSAGE  MSG TYPE 'I'.
 *      MESSAGE msg TYPE 'E'.
   endtry.
 
