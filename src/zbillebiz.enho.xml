@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_ENHO" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOOL>HOOK_IMPL</TOOL>
+   <SHORTTEXT>Ebizcharge Bill Enhancement</SHORTTEXT>
+   <ORIGINAL_OBJECT>
+    <PGMID>R3TR</PGMID>
+    <ORG_OBJ_TYPE>FUGR</ORG_OBJ_TYPE>
+    <ORG_OBJ_NAME>V60A</ORG_OBJ_NAME>
+    <ORG_MAIN_TYPE>FUGR</ORG_MAIN_TYPE>
+    <ORG_MAIN_NAME>V60A</ORG_MAIN_NAME>
+    <PROGRAMNAME>SAPLV60A</PROGRAMNAME>
+   </ORIGINAL_OBJECT>
+   <ENHANCEMENTS>
+    <ENH_HOOK_IMPL>
+     <PROGRAMNAME>SAPLV60A</PROGRAMNAME>
+     <ENHMODE>D</ENHMODE>
+     <FULL_NAME>\PR:SAPLV60A\FO:USEREXIT_ACCOUNT_PREP_KOMPCV\SE:BEGIN\EI</FULL_NAME>
+     <SOURCE>
+      <item>    IF ( SY-TCODE EQ &apos;VF01&apos; OR SY-TCODE EQ &apos;VF02&apos; ) and SY-UCOMM EQ &apos;SICH&apos; and SY-CPROG EQ &apos;SAPMV60A&apos; and SY-XPROG EQ &apos;SAPCNVE&apos;.</item>
+      <item>*    IF VBAK-ZZ4020_OFFCHECK = &apos;X&apos;.</item>
+      <item>*      SUBMIT SAPMV60A.</item>
+      <item>*     CALL SCREEN 9001 STARTING AT 10 1 ENDING AT 115 40.</item>
+      <item>*      Call TRANSACTION &apos;Z002&apos;.</item>
+      <item>*    ENDIF.</item>
+      <item>endif.</item>
+     </SOURCE>
+    </ENH_HOOK_IMPL>
+   </ENHANCEMENTS>
+   <SOTR>
+    <item>
+     <HEADER>
+      <CONCEPT>E3AE08B4DFAE1EDC86F2FD8501ACE258</CONCEPT>
+      <CREA_LAN>E</CREA_LAN>
+      <TRALA_TYPE>1</TRALA_TYPE>
+      <OBJID_VEC>AAI=</OBJID_VEC>
+     </HEADER>
+     <ENTRIES>
+      <SOTR_TEXT>
+       <CONCEPT>E3AE08B4DFAE1EDC86F2FD8501ACE258</CONCEPT>
+       <LANGU>E</LANGU>
+       <LFD_NUM>0001</LFD_NUM>
+       <FLAG_CNTXT>X</FLAG_CNTXT>
+       <STATUS>R</STATUS>
+       <LENGTH>041</LENGTH>
+       <TEXT>Ebizcharge Bill Enhancement</TEXT>
+      </SOTR_TEXT>
+     </ENTRIES>
+    </item>
+   </SOTR>
+   <SOTR_USE>
+    <SOTR_USE>
+     <PGMID>R3TR</PGMID>
+     <OBJECT>ENHO</OBJECT>
+     <OBJ_NAME>ZBILLEBIZ</OBJ_NAME>
+     <CONCEPT>E3AE08B4DFAE1EDC86F2FD8501ACE258</CONCEPT>
+     <LFD_NUM>0001</LFD_NUM>
+    </SOTR_USE>
+   </SOTR_USE>
+  </asx:values>
+ </asx:abap>
+</abapGit>

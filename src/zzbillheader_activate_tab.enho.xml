@@ -21,9 +21,9 @@
       <item>*</item>
       <item>  LOOP AT SCREEN.</item>
       <item>  IF SCREEN-NAME EQ &apos;TABSTRIP_TAB06&apos;.</item>
-      <item>     GS_CUST_TAB-HEAD_CAPTION = &apos;Test Tab&apos;.&quot;custom tab name</item>
+      <item>     GS_CUST_TAB-HEAD_CAPTION = &apos;Transaction Log&apos;.&quot;custom tab name</item>
       <item>  GS_CUST_TAB-HEAD_PROGRAM = &apos;SAPMZCUSTOM_SCREEN&apos;.&quot;custom z* program</item>
-      <item>  GS_CUST_TAB-HEAD_DYNPRO = &apos;4020&apos;.&quot; custom z* program screen</item>
+      <item>  GS_CUST_TAB-HEAD_DYNPRO = &apos;4098&apos;.&quot; custom z* program screen</item>
       <item>  if not GS_CUST_TAB-HEAD_DYNPRO is INITIAL.</item>
       <item>    Screen-ACTIVE = 1.</item>
       <item>    Screen-invisible = 0.</item>

@@ -897,6 +897,36 @@
       </RSFDO>
      </DOCUMENTATION>
     </item>
+    <item>
+     <FUNCNAME>ZHANDLERESPONSE_CUSTOMER</FUNCNAME>
+     <SHORT_TEXT>Handle Response</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>RUN_CUSTOMER_TRANSACTION_RESUL</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZEBIZ_CHARGETRANSACTION_RESPON</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>RESULT</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>/ASU/ADHOC_STEP</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>RUN_CUSTOMER_TRANSACTION_RESUL</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Proxy Structure (generated)</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>RESULT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>ASU: AdHoc-Step - domain BOOLE: TRUE (=&apos;X&apos;) and FALSE (=&apos; &apos;)</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
    </FUNCTIONS>
   </asx:values>
  </asx:abap>

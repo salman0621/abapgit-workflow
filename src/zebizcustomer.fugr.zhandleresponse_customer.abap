@@ -1,12 +1,12 @@
-FUNCTION ZHANDLERESPONSE.
-*"----------------------------------------------------------------------
+FUNCTION ZHANDLERESPONSE_CUSTOMER.
+*"--------------------------------------------------------------------
 *"*"Local Interface:
 *"  IMPORTING
 *"     REFERENCE(RUN_CUSTOMER_TRANSACTION_RESUL) TYPE
-*"        ZEBIZ_CHARGETRANSACTION_RESPON
+*"                             ZEBIZ_CHARGETRANSACTION_RESPON
 *"  EXPORTING
 *"     REFERENCE(RESULT) TYPE  /ASU/ADHOC_STEP
-*"----------------------------------------------------------------------
+*"--------------------------------------------------------------------
   DATA: EXC TYPE REF TO CX_ROOT.
   DATA: MSG TYPE STRING.
   DATA: MSG1 TYPE STRING,
@@ -80,22 +80,7 @@ FUNCTION ZHANDLERESPONSE.
           MSG4 = 'Your transaction was processed, but our card '.
           MSG5 = 'verification indicates this could result in a chargeback.'.
           MSG6 = 'Do you still wish to process the payment?'.
-*        CALL FUNCTION 'POPUP_FOR_INTERACTION'
-*        EXPORTING
-*          HEADLINE             = 'Decline'
-*          TEXT1                = MSG1
-*          TEXT2                = ''
-*          TEXT3                = MSG2
-*          TEXT4                = MSG3
-*          TEXT5                = ''
-*          TEXT6                = MSG4
-*          TICON                = 'I'
-*          BUTTON_1             = 'Yes, Process'
-*          BUTTON_2             = 'Void Payment'
-**   BUTTON_3             = ' '
-* IMPORTING
-*   BUTTON_PRESSED       = ANS
-*          .
+
           CALL FUNCTION 'POPUP_WITH_2_BUTTONS_TO_CHOOSE'
             EXPORTING
 *             DEFAULTOPTION = '1'
@@ -106,42 +91,16 @@ FUNCTION ZHANDLERESPONSE.
               TEXTLINE2     = MSG5
               TEXTLINE3     = MSG6
               TEXT_OPTION1  = 'Yes, Process'
-              TEXT_OPTION2  = 'Void Payment'
+              TEXT_OPTION2  = 'Cancel'
               TITEL         = 'Information'
             IMPORTING
               ANSWER        = ANS.
-
-*        CALL FUNCTION 'POPUP_TO_CONFIRM'
-*        EXPORTING
-*          TITLEBAR              = 'Information'
-*          TEXT_QUESTION         = MSG1
-*          TEXT_BUTTON_1         = 'Yes, Process'
-*          ICON_BUTTON_1         = 'ICON_CHECKED'
-*          TEXT_BUTTON_2         = 'Void Payment'
-*          ICON_BUTTON_2         = 'ICON_CANCEL'
-*          DISPLAY_CANCEL_BUTTON = ' '
-*          POPUP_TYPE            = 'ICON_MESSAGE_ERROR'
-*        IMPORTING
-*          ANSWER                = ANS.
           IF ANS = '1'.
             RESULT = 'X'.
             RETURN.
           ELSEIF ANS = '2'.
-            TRAN-COMMAND = 'creditvoid'.
-            TRAN-REF_NUM = RUN_CUSTOMER_TRANSACTION_RESUL-REF_NUM.
-
-            CALL FUNCTION 'ZEBIZ_RUNTRANSACTIONS'
-              EXPORTING
-                TRAN                   = TRAN
-              IMPORTING
-                RUN_TRANSACTION_RESULT = RUN_TRANSACTION_RESULT.
-            IF RUN_TRANSACTION_RESULT-RESULT_CODE = 'E'.
-              MESSAGE RUN_TRANSACTION_RESULT-ERROR TYPE 'I'.
-            ELSE.
-*              MESSAGE RUN_TRANSACTION_RESULT-STATUS TYPE 'S'.
-               RESULT = ''.
+            RESULT = ''.
             RETURN.
-            ENDIF.
           ENDIF.       .
        else.
           RESULT = 'X'.

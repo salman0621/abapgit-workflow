@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_ENHO" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOOL>HOOK_IMPL</TOOL>
+   <SHORTTEXT>POPUP CALL</SHORTTEXT>
+   <ORIGINAL_OBJECT>
+    <PGMID>R3TR</PGMID>
+    <ORG_OBJ_TYPE>PROG</ORG_OBJ_TYPE>
+    <ORG_OBJ_NAME>SAPMV60A</ORG_OBJ_NAME>
+    <ORG_MAIN_TYPE>PROG</ORG_MAIN_TYPE>
+    <ORG_MAIN_NAME>SAPMV60A</ORG_MAIN_NAME>
+    <PROGRAMNAME>SAPMV60A</PROGRAMNAME>
+   </ORIGINAL_OBJECT>
+   <ENHANCEMENTS>
+    <ENH_HOOK_IMPL>
+     <SPOTNAME>ES_SAPMV60A</SPOTNAME>
+     <PROGRAMNAME>SAPMV60A</PROGRAMNAME>
+     <ENHMODE>D</ENHMODE>
+     <FULL_NAME>\PR:SAPMV60A\EX:BELEG_SICHERN_11\EI</FULL_NAME>
+     <SOURCE>
+      <item/>
+      <item>  CALL FUNCTION &apos;RV_INVOICE_DOCUMENT_ADD&apos;</item>
+      <item>       EXPORTING</item>
+      <item>            VBSK_I           = VBSK</item>
+      <item>            WITH_POSTING     = &apos;A&apos;</item>
+      <item>            PREISFINDUNGSART = CALC_TYPE</item>
+      <item>       IMPORTING</item>
+      <item>            VBSK_E           = VBSK</item>
+      <item>       TABLES</item>
+      <item>            XKOMFK           = XKOMFK</item>
+      <item>            XTHEAD           = XTHEAD</item>
+      <item>            XVBFS            = XVBFS</item>
+      <item>            XVBSS            = XVBSS</item>
+      <item>            XVBRK            = XVBRK</item>
+      <item>            XVBRP            = XVBRP</item>
+      <item>            XVBPA            = XVBPA</item>
+      <item>            XKOMV            = XKOMV.</item>
+      <item>  DATA: LD_MONAT TYPE BKPF-MONAT,</item>
+      <item>        LD_VBELN TYPE VBRP-VBELN.</item>
+      <item/>
+      <item/>
+      <item>*    IF NOT xvbfs[] IS INITIAL.</item>
+      <item>*      LOOP AT xvbfs.</item>
+      <item>*        &quot;--- Billing document number over ---&quot;</item>
+      <item>*        IF xvbfs-msgty = &apos;S&apos; AND xvbfs-msgid = &apos;VF&apos;</item>
+      <item>*        AND xvbfs-msgno = &apos;311&apos;.</item>
+      <item>**          MOVE xvbfs-msgv1 TO E_VBELN_vf.  &quot;---Fakturabelegnummer</item>
+      <item>**          CLEAR i_errmail.</item>
+      <item>*        ENDIF.</item>
+      <item>*        MESSAGE ID xvbfs-msgid TYPE xvbfs-msgty</item>
+      <item>*        NUMBER xvbfs-msgno</item>
+      <item>*        WITH xvbfs-msgv1 xvbfs-msgv2 xvbfs-msgv3 xvbfs-msgv4.</item>
+      <item>**        INTO gs_mail-TEXT.</item>
+      <item>**        APPEND gs_mail TO it_mail.</item>
+      <item>*      ENDLOOP.</item>
+      <item>*    ELSE.</item>
+      <item>*      IF xvbfs-msgty = &apos;S&apos; AND xvbfs-msgid = &apos;VF&apos; AND xvbfs-msgno = &apos;311&apos;.</item>
+      <item>**        CLEAR i_errmail.</item>
+      <item>**        MOVE xvbfs-msgv1 TO E_VBELN_vf.  &quot;billing document number ---</item>
+      <item>*        MESSAGE ID xvbfs-msgid TYPE xvbfs-msgty</item>
+      <item>*        NUMBER xvbfs-msgno</item>
+      <item>*        WITH xvbfs-msgv1 xvbfs-msgv2 xvbfs-msgv3 xvbfs-msgv4.</item>
+      <item>**        INTO gs_mail-TEXT.</item>
+      <item>**        APPEND gs_mail TO it_mail.</item>
+      <item>*      ELSE.</item>
+      <item>*        &quot;- Messageb need not hingefügt ...?</item>
+      <item>*      ENDIF.</item>
+      <item>*    ENDIF.</item>
+      <item>    IF ( SY-TCODE EQ &apos;VF01&apos; OR SY-TCODE EQ &apos;VF02&apos; ) AND SY-UCOMM EQ &apos;SICH&apos; AND SY-CPROG EQ &apos;SAPMV60A&apos;  .</item>
+      <item>      wait  UP tO 2 SECONDS.</item>
+      <item>      SELECT SINGLE VBELN</item>
+      <item>      FROM VBRP</item>
+      <item>      INTO LD_VBELN</item>
+      <item>      WHERE AUBEL = VBRP-AUBEL.</item>
+      <item/>
+      <item>      SELECT SINGLE MONAT</item>
+      <item>      FROM BKPF</item>
+      <item>      INTO LD_MONAT</item>
+      <item>      WHERE BELNR = LD_VBELN.</item>
+      <item>  IF SY-SUBRC = 0.</item>
+      <item>      CALL SCREEN 9001 STARTING AT 10 1 ENDING AT 115 40.</item>
+      <item>      endif.</item>
+      <item>    ENDIF.</item>
+      <item/>
+     </SOURCE>
+    </ENH_HOOK_IMPL>
+   </ENHANCEMENTS>
+   <SOTR>
+    <item>
+     <HEADER>
+      <CONCEPT>E3AE08B4DFAE1EDC89ECC59801CFA258</CONCEPT>
+      <CREA_LAN>E</CREA_LAN>
+      <TRALA_TYPE>1</TRALA_TYPE>
+      <OBJID_VEC>AAI=</OBJID_VEC>
+     </HEADER>
+     <ENTRIES>
+      <SOTR_TEXT>
+       <CONCEPT>E3AE08B4DFAE1EDC89ECC59801CFA258</CONCEPT>
+       <LANGU>E</LANGU>
+       <LFD_NUM>0001</LFD_NUM>
+       <FLAG_CNTXT>X</FLAG_CNTXT>
+       <STATUS>R</STATUS>
+       <LENGTH>020</LENGTH>
+       <TEXT>POPUP CALL</TEXT>
+      </SOTR_TEXT>
+     </ENTRIES>
+    </item>
+   </SOTR>
+   <SOTR_USE>
+    <SOTR_USE>
+     <PGMID>R3TR</PGMID>
+     <OBJECT>ENHO</OBJECT>
+     <OBJ_NAME>ZZPOPUPCALL</OBJ_NAME>
+     <CONCEPT>E3AE08B4DFAE1EDC89ECC59801CFA258</CONCEPT>
+     <LFD_NUM>0001</LFD_NUM>
+    </SOTR_USE>
+   </SOTR_USE>
+  </asx:values>
+ </asx:abap>
+</abapGit>

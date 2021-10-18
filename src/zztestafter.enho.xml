@@ -19,11 +19,16 @@
      <FULL_NAME>\PR:SAPMV45A\FO:USEREXIT_SAVE_DOCUMENT\SE:BEGIN\EI</FULL_NAME>
      <SOURCE>
       <item>* IF VBAK-ZZ4020_RESULT = &apos;&apos;.</item>
+      <item>*  Data VA_FIELD type STRING.</item>
+      <item/>
+      <item/>
       <item>  If SY-TCODE eq &apos;VA01&apos; or SY-TCODE eq &apos;VA02&apos;.</item>
       <item>    if VBAK-ZZ4020_OFFCHECK = &apos;X&apos;.</item>
       <item>CALL SCREEN 4099 STARTING AT 10 1 ENDING AT 115 40.</item>
-      <item>ENDIF.</item>
       <item>endif.</item>
+      <item/>
+      <item>ENDIF.</item>
+      <item/>
       <item>*endif.</item>
       <item>* if VBAK-ZZ4020_TRANS_TYPE = &apos;&apos; and sy-Tcode = &apos;VA02&apos; .</item>
       <item>*  MESSAGE &apos;Please select transaction type &apos; TYPE &apos;E&apos; DISPLAY LIKE &apos;E&apos;.</item>

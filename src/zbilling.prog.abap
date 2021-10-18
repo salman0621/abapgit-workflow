@@ -34,59 +34,59 @@ SELECT SINGLE * from lips where
 
 vbeln = likp-vbeln.
 
-*t_billing-salesorg = likp-vkorg.
-*
-*t_billing-ref_doc = likp-vbeln.
-*
-*t_billing-ref_item = lips-posnr.
-*
-*t_billing-doc_number = p_vbeln.
-*
-*t_billing-itm_number = lips-posnr.
-*
-*t_billing-ordbilltyp = 'F2'.
-*
-*t_billing-price_date = sy-datum.
-*
-*t_billing-ref_doc_ca = likp-vbtyp.
-*
-*t_billing-material = lips-matnr.
-*
-*t_billing-plant = lips-werks.
+t_billing-salesorg = likp-vkorg.
 
+t_billing-ref_doc = likp-vbeln.
 
-t_billing-SALESORG = likp-vkorg.
+t_billing-ref_item = lips-posnr.
 
-t_billing-DISTR_CHAN = '01'.
+t_billing-doc_number = p_vbeln.
 
-t_billing-DIVISION = '01'.
+t_billing-itm_number = lips-posnr.
 
-t_billing-ORDBILLTYP = 'FP'.
+t_billing-ordbilltyp = 'F2'.
 
 t_billing-price_date = sy-datum.
 
-t_billing-SOLD_TO = '14'.
+t_billing-ref_doc_ca = likp-vbtyp.
 
-t_billing-ITEM_CATEG = 'DLN'.
+t_billing-material = lips-matnr.
 
-t_billing-REQ_QTY = '10'.
-
-t_billing-SALES_UNIT = '10'.
-
-t_billing-CURRENCY = 'USD'.
-
-t_billing-SHORT_TEXT = 'Test'.
-
-t_billing-BILL_DATE = sy-datum.
-
-t_billing-ITM_NUMBER = '10'.
-
-t_billing-ITEM = 'COKE10'.
+t_billing-plant = lips-werks.
 
 
-t_billing-COUNTRY = 'AUS'.
-
-t_billing-TAXCL_1MAT = '1'.
+*t_billing-SALESORG = likp-vkorg.
+*
+*t_billing-DISTR_CHAN = '01'.
+*
+*t_billing-DIVISION = '01'.
+*
+*t_billing-ORDBILLTYP = 'F2'.
+*
+*t_billing-price_date = sy-datum.
+*
+*t_billing-SOLD_TO = '14'.
+*
+*t_billing-ITEM_CATEG = 'DLN'.
+*
+*t_billing-REQ_QTY = '13'.
+*
+*t_billing-SALES_UNIT = '13'.
+*
+*t_billing-CURRENCY = 'USD'.
+*
+*t_billing-SHORT_TEXT = 'Test'.
+*
+*t_billing-BILL_DATE = sy-datum.
+*
+*t_billing-ITM_NUMBER = '10'.
+*
+*t_billing-ITEM = 'COKE10'.
+*
+*
+*t_billing-COUNTRY = 'AUS'.
+*
+*t_billing-TAXCL_1MAT = '1'.
 
 APPEND t_billing.
 
