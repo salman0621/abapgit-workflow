@@ -37,49 +37,119 @@
       <item>            XVBPA            = XVBPA</item>
       <item>            XKOMV            = XKOMV.</item>
       <item>  DATA: LD_MONAT TYPE BKPF-MONAT,</item>
-      <item>        LD_VBELN TYPE VBRP-VBELN.</item>
-      <item/>
-      <item/>
-      <item>*    IF NOT xvbfs[] IS INITIAL.</item>
-      <item>*      LOOP AT xvbfs.</item>
-      <item>*        &quot;--- Billing document number over ---&quot;</item>
-      <item>*        IF xvbfs-msgty = &apos;S&apos; AND xvbfs-msgid = &apos;VF&apos;</item>
-      <item>*        AND xvbfs-msgno = &apos;311&apos;.</item>
-      <item>**          MOVE xvbfs-msgv1 TO E_VBELN_vf.  &quot;---Fakturabelegnummer</item>
-      <item>**          CLEAR i_errmail.</item>
-      <item>*        ENDIF.</item>
-      <item>*        MESSAGE ID xvbfs-msgid TYPE xvbfs-msgty</item>
-      <item>*        NUMBER xvbfs-msgno</item>
-      <item>*        WITH xvbfs-msgv1 xvbfs-msgv2 xvbfs-msgv3 xvbfs-msgv4.</item>
-      <item>**        INTO gs_mail-TEXT.</item>
-      <item>**        APPEND gs_mail TO it_mail.</item>
-      <item>*      ENDLOOP.</item>
-      <item>*    ELSE.</item>
-      <item>*      IF xvbfs-msgty = &apos;S&apos; AND xvbfs-msgid = &apos;VF&apos; AND xvbfs-msgno = &apos;311&apos;.</item>
-      <item>**        CLEAR i_errmail.</item>
-      <item>**        MOVE xvbfs-msgv1 TO E_VBELN_vf.  &quot;billing document number ---</item>
-      <item>*        MESSAGE ID xvbfs-msgid TYPE xvbfs-msgty</item>
-      <item>*        NUMBER xvbfs-msgno</item>
-      <item>*        WITH xvbfs-msgv1 xvbfs-msgv2 xvbfs-msgv3 xvbfs-msgv4.</item>
-      <item>**        INTO gs_mail-TEXT.</item>
-      <item>**        APPEND gs_mail TO it_mail.</item>
-      <item>*      ELSE.</item>
-      <item>*        &quot;- Messageb need not hingefügt ...?</item>
-      <item>*      ENDIF.</item>
-      <item>*    ENDIF.</item>
-      <item>    IF ( SY-TCODE EQ &apos;VF01&apos; OR SY-TCODE EQ &apos;VF02&apos; ) AND SY-UCOMM EQ &apos;SICH&apos; AND SY-CPROG EQ &apos;SAPMV60A&apos;  .</item>
+      <item>        LD_VBELN TYPE VBRP-VBELN,</item>
+      <item>*        ZZ4020_CARD_NUMBER TYPE STRING,</item>
+      <item>       ANS                            TYPE C,</item>
+      <item>         ZVBAK TYPE VBAK,</item>
+      <item>        Sale_Check TYPE /ASU/ADHOC_STEP.</item>
+      <item>DATA: MSG TYPE STRING.</item>
+      <item>DATA: ff TYPE STRING.</item>
+      <item>    DATA amt TYPE /ATL/DEC16_2.</item>
+      <item>    DATA TRAN TYPE ZEBIZ_CHARGECUSTOMER_TRANSACTI.</item>
+      <item>    DATA MERCHANT TYPE ZEBIZ_CHARGEMERCHANT_TRANSACTI.</item>
+      <item>    DATA: TRANs                     TYPE ZEBIZ_CHARGETRANSACTION_REQUES,</item>
+      <item>          RUN_TRANSACTION_RESULT     TYPE ZEBIZ_CHARGETRANSACTION_RESPON,</item>
+      <item>          RUN_TRANSACTION_RESULT_VOID     TYPE ZEBIZ_CHARGETRANSACTION_RESPON.</item>
+      <item>    DATA: DETAILS TYPE ZEBIZ_CHARGETRANSACTION_DETAIL,</item>
+      <item>          RUN_CUSTOMER_TRANSACTION_RESUL TYPE ZEBIZ_CHARGETRANSACTION_RESPON,</item>
+      <item>          CUSNUM TYPE STRING.</item>
+      <item>    DATA ERR TYPE STRING.</item>
+      <item>    DATA Result_Code TYPE STRING.</item>
+      <item>    DATA REF_NUM TYPE STRING.</item>
+      <item>    DATA ERROR TYPE STRING.</item>
+      <item> IF ( SY-TCODE EQ &apos;VF01&apos; OR SY-TCODE EQ &apos;VF02&apos; ) AND SY-UCOMM EQ &apos;SICH&apos; AND SY-CPROG EQ &apos;SAPMV60A&apos;  .</item>
       <item>      wait  UP tO 2 SECONDS.</item>
       <item>      SELECT SINGLE VBELN</item>
       <item>      FROM VBRP</item>
       <item>      INTO LD_VBELN</item>
       <item>      WHERE AUBEL = VBRP-AUBEL.</item>
       <item/>
+      <item>*      SELECT SINGLE ZZ4020_OFFCHECK</item>
+      <item>*      FROM VBAK</item>
+      <item>*      INTO Sale_Check</item>
+      <item>*      WHERE VBELN = VBRP-AUBEL.</item>
+      <item/>
+      <item>      SELECT SINGLE *</item>
+      <item>      FROM VBAK</item>
+      <item>      INTO ZVBAK</item>
+      <item>      WHERE VBELN = VBRP-AUBEL.</item>
+      <item/>
       <item>      SELECT SINGLE MONAT</item>
       <item>      FROM BKPF</item>
       <item>      INTO LD_MONAT</item>
       <item>      WHERE BELNR = LD_VBELN.</item>
       <item>  IF SY-SUBRC = 0.</item>
-      <item>      CALL SCREEN 9001 STARTING AT 10 1 ENDING AT 115 40.</item>
+      <item>    if ZVBAK-ZZ4020_OFFCHECK = &apos;X&apos;.</item>
+      <item>          amt = ZVBAK-ZZ4020_AMOUNT.</item>
+      <item>          ff = amt.</item>
+      <item>          REPLACE &apos;.&apos; WITH &apos;,&apos; INTO ff.</item>
+      <item>              CONCATENATE &apos;Do you want to capture payment against Card Number &apos;</item>
+      <item>               ZVBAK-ZZ4020_CARD_NUMBER</item>
+      <item>               &apos;, Amount:&apos; ff &apos;?&apos;</item>
+      <item>              INTO msg SEPARATED BY space.</item>
+      <item>          CALL FUNCTION &apos;POPUP_TO_CONFIRM&apos;</item>
+      <item>          EXPORTING</item>
+      <item>            TITLEBAR              = &apos;Capture Payment&apos;</item>
+      <item>            TEXT_QUESTION         = msg</item>
+      <item>            TEXT_BUTTON_1         = &apos;Yes&apos;</item>
+      <item>            ICON_BUTTON_1         = &apos;ICON_CHECKED&apos;</item>
+      <item>            TEXT_BUTTON_2         = &apos;No&apos;</item>
+      <item>            ICON_BUTTON_2         = &apos;ICON_CANCEL&apos;</item>
+      <item>            DISPLAY_CANCEL_BUTTON = &apos; &apos;</item>
+      <item>            POPUP_TYPE            = &apos;ICON_MESSAGE_ERROR&apos;</item>
+      <item>          IMPORTING</item>
+      <item>            ANSWER                = ANS.</item>
+      <item>          IF ANS = &apos;2&apos;.</item>
+      <item>             SY-UCOMM = &apos;SICH&apos;.</item>
+      <item>                    CALL SCREEN 9001 STARTING AT 10 1 ENDING AT 115 40.</item>
+      <item>            else.</item>
+      <item>            DATA it_VBELN TYPE VBRK-VBELN.</item>
+      <item>            SELECT SINGLE VBELN</item>
+      <item>            FROM VBRP</item>
+      <item>            INTO it_VBELN</item>
+      <item>            WHERE AUBEL = VBRP-AUBEL.</item>
+      <item>            DETAILS-ORDER_ID = VBRP-AUBEL.</item>
+      <item>            DETAILS-INVOICE = it_VBELN.</item>
+      <item>            DETAILS-Discount = 0.</item>
+      <item>            CALL FUNCTION &apos;CHAR_FLTP_CONVERSION&apos;</item>
+      <item>            EXPORTING</item>
+      <item>              STRING                   = ff</item>
+      <item>            IMPORTING</item>
+      <item>              FLSTR                    = DETAILS-Amount</item>
+      <item>              .</item>
+      <item>            TRANs-DETAILS = DETAILS.</item>
+      <item>            TRANs-REF_NUM = ZVBAK-ZZ4020_RESULT.</item>
+      <item>            TRANs-COMMAND = &apos;capture&apos;.</item>
+      <item>            TRANs-CUSTOMER_ID = VBRK-KUNRG.</item>
+      <item>            CALL FUNCTION &apos;ZEBIZ_RUNTRANSACTIONS&apos;</item>
+      <item>            EXPORTING</item>
+      <item>              TRAN                   = TRANs</item>
+      <item>            IMPORTING</item>
+      <item>              RUN_TRANSACTION_RESULT = RUN_TRANSACTION_RESULT.</item>
+      <item>            ERR = RUN_TRANSACTION_RESULT-ERROR.</item>
+      <item>            Result_Code = RUN_TRANSACTION_RESULT-Result_Code.</item>
+      <item>            REF_NUM = RUN_TRANSACTION_RESULT-REF_NUM.</item>
+      <item>            ERROR = RUN_TRANSACTION_RESULT-ERROR.</item>
+      <item>            TRANSLATE ERR TO LOWER CASE.</item>
+      <item>            IF Result_Code EQ &apos;A&apos; OR err EQ &apos;approved&apos; .</item>
+      <item>                CONCATENATE &apos;Approved. Approval Code: &apos; REF_NUM &apos;, Amount:&apos; ff INTO msg SEPARATED BY space.</item>
+      <item>          MESSAGE msg TYPE &apos;I&apos;.</item>
+      <item>          else.</item>
+      <item>              CONCATENATE &apos;Can not process your transaction for card: &apos;</item>
+      <item>              ZVBAK-ZZ4020_CARD_NUMBER INTO msg SEPARATED BY space.</item>
+      <item>              CALL FUNCTION &apos;POPUP_FOR_INTERACTION&apos;</item>
+      <item>              EXPORTING</item>
+      <item>                HEADLINE             = &apos;Decline&apos;</item>
+      <item>                TEXT1                = msg</item>
+      <item>                TEXT2                = &apos;&apos;</item>
+      <item>                TEXT3                = err</item>
+      <item>                BUTTON_1             = &apos;OK&apos;</item>
+      <item>                .</item>
+      <item>              return.</item>
+      <item>              endif.</item>
+      <item>          ENDIF.</item>
+      <item>      endif.</item>
+      <item/>
       <item>      endif.</item>
       <item>    ENDIF.</item>
       <item/>
